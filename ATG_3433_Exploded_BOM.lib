@@ -1,0 +1,181 @@
+Program.Sub.Preflight.Start
+
+Variable.UDT.BOM.Define("Line",Long)
+Variable.UDT.BOM.Define("Seq",String)
+Variable.UDT.BOM.Define("Part",String)
+Variable.UDT.BOM.Define("Description",String)
+Variable.UDT.BOM.Define("Category",String)
+Variable.UDT.BOM.Define("Source",String)
+Variable.UDT.BOM.Define("Quantity",Float)
+Variable.UDT.BOM.Define("OnHand",Float)
+Variable.UDT.BOM.Define("OnOrder",Float)
+Variable.UDT.BOM.Define("Required",Float)
+Variable.UDT.BOM.Define("Net",Float)
+Variable.UDT.BOM.Define("RouterNet",Float)
+Variable.UDT.BOM.Define("Parent",String)
+Variable.UDT.BOM.Define("BOM",String)
+Variable.UDT.BOM.Define("SeqNo",Long)
+Variable.uGlobal.uBomX.Declare("BOM")
+Variable.Global.sExplodedBoms.Declare(String)
+
+Program.Sub.Preflight.End
+
+Program.Sub.BOMClear.Start
+V.Global.sExplodedBoms.Redim(-1,-1)
+V.uGlobal.uBomX.Redim(-1,-1)
+
+Program.Sub.BOMClear.End
+
+Program.Sub.BOMAddRecord.Start
+V.Local.iUB.Declare(Long)
+
+F.Intrinsic.Control.If(V.Global.sExplodedBoms.UBound,=,0)
+	F.Intrinsic.Control.If(V.Global.sExplodedBoms(0),=,"")
+		F.Intrinsic.Control.CallSub(Bomclear)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Args.sBom,=,"")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Math.Add(V.Global.sExplodedBoms.UBound,1,V.Local.iUB)
+F.Intrinsic.Control.If(V.Local.iUB,=,0)
+	V.Global.sExplodedBoms.Redim(0,0)
+F.Intrinsic.Control.Else
+	V.Global.sExplodedBoms.RedimPreserve(0,V.Local.iUB)
+F.Intrinsic.Control.EndIf
+
+V.Global.sExplodedBoms(v.Local.iUB).Set(V.Args.sBom)
+
+Program.Sub.BOMAddRecord.End
+
+Program.Sub.BOMGetUDT.Start
+V.Local.sFilePath.Declare(String)
+V.Local.sFile.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iJ.Declare(Long)
+V.Local.iK.Declare(Long)
+V.Local.bExists.Declare(Boolean)
+V.Local.sText.Declare(String)
+V.Local.sLine.Declare(String)
+V.Local.iUB.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.bInIDE.Declare(Boolean)
+
+F.Intrinsic.String.Concat(V.System.Temp,"\GSS\BOM",V.Caller.Terminal,".txt",V.Local.sFilePath)
+F.Intrinsic.Control.For(V.Local.iC,0,V.Global.sExplodedBoms.UBound,1)
+	F.Intrinsic.File.Exists(V.Local.sFilePath,V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,True)
+		F.Intrinsic.File.DeleteFile(V.Local.sFilePath)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.String.Concat("0",V.Ambient.Tab,V.Global.sExplodedBoms(v.Local.iC),V.Ambient.Tab,V.Local.sFilePath,V.Local.sFile)
+	F.Intrinsic.File.String2File(V.Local.sFilePath,V.Local.sFile)
+	
+	F.Global.General.CallWrapperSync(410000,V.Local.sFilePath)
+
+	F.Intrinsic.File.Exists(V.Local.sFilePath,V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,True)
+'-------------------------------------------------------------------------------------------------------------------------------------------------------
+'changed to see if this might fix the error that was being generated.  For some reason the file was always empty they were trying to read.
+		'Read the text file saved in sFile so the file the callwrapper created can be located.
+		F.Intrinsic.File.fileToStringArray(v.Local.sFilePath,v.Ambient.Tab,v.Local.sText)
+		'Get the File name the callwrapper created.
+		F.Intrinsic.File.GetFileNameFromFQN(V.Local.sText(3),V.Local.sText.Trim)
+		'Remove all the spaces after the file name. (Note at this time .Trim will not work)
+		F.Intrinsic.String.Split(V.Local.sText," ",V.Local.sText)
+		F.Intrinsic.String.Concat(V.System.Temp,"\GSS\",V.Local.sText,V.Local.sText)
+'------------------------------------------------------------------------------------------------------------------------------------------------------
+'		F.Intrinsic.File.File2String(V.Local.sFilePath,V.Local.sText)
+'		F.Intrinsic.String.Split(V.Local.sText,V.Ambient.NewLine,V.Local.sText)
+'		F.Intrinsic.String.Split(V.Local.sText(0),V.Ambient.Tab,V.Local.sText)
+		F.Intrinsic.Control.If(V.Local.sText.UBound,>=,3)
+			F.Intrinsic.String.Trim(V.Local.sText(0),V.Local.sFile)
+			F.Intrinsic.File.Exists(V.Local.sFile,V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,True)
+				F.Intrinsic.File.File2String(V.Local.sFile,V.Local.sText)
+				F.Intrinsic.String.Split(V.Local.sText,V.Ambient.NewLine,V.Local.sText)
+				F.Intrinsic.Control.For(V.Local.iJ,0,V.Local.sText.UBound,1)
+					F.Intrinsic.String.Split(V.Local.sText(v.Local.iJ),"|~|",V.Local.sLine)
+					F.Intrinsic.Control.If(V.Local.sLine.UBound,>,0)
+						F.Intrinsic.Control.If(V.Local.sLine(0).IsNumeric,=,True)
+'							F.Intrinsic.Control.CallSub(Bomaddpos,"iBom",V.Local.iC,"sLine",V.Local.sText(v.Local.iJ))
+							F.Intrinsic.Math.Add(V.uGlobal.uBomX.ubound,1,V.Local.iUB)
+							F.Intrinsic.Control.If(V.Local.iUB,=,0)
+								V.uGlobal.uBomX.Redim(0,0)
+							F.Intrinsic.Control.Else
+								V.uGlobal.uBomX.RedimPreserve(0,V.Local.iUB)
+							F.Intrinsic.Control.EndIf
+
+							V.uGlobal.uBomX(v.Local.iUB)!BOM.set(V.Global.sExplodedBoms(V.Local.iC).RTrim)
+							V.uGlobal.uBomX(v.Local.iUB)!Line.set(V.Local.sLine(0).Long)
+							V.uGlobal.uBomX(v.Local.iUB)!Seq.set(V.Local.sLine(1).String)
+							F.Intrinsic.String.Replace(V.uGlobal.uBomX(v.Local.iUB)!Seq,"*","",V.Local.sTemp)
+							F.Intrinsic.String.Replace(V.Local.sTemp," ","",V.Local.sTemp)
+							F.Intrinsic.Control.If(V.Local.sTemp.IsNumeric,=,True)
+								V.uGlobal.uBomX(v.Local.iUB)!SeqNo.set(V.Local.sTemp.long)
+							F.Intrinsic.Control.Else
+								V.uGlobal.uBomX(v.Local.iUB)!SeqNo.set(0)
+							F.Intrinsic.Control.EndIf
+							V.uGlobal.uBomX(v.Local.iUB)!Part.set(V.Local.sLine(2).RTrim)
+							V.uGlobal.uBomX(v.Local.iUB)!Description.set(V.Local.sLine(3).String)
+							V.uGlobal.uBomX(v.Local.iUB)!Category.set(V.Local.sLine(4).String)
+							V.uGlobal.uBomX(v.Local.iUB)!Source.set(V.Local.sLine(5).String)
+							V.uGlobal.uBomX(v.Local.iUB)!Quantity.set(V.Local.sLine(6).Float)
+							V.uGlobal.uBomX(v.Local.iUB)!OnHand.set(V.Local.sLine(7).Float)
+							V.uGlobal.uBomX(v.Local.iUB)!OnOrder.set(V.Local.sLine(8).Float)
+							V.uGlobal.uBomX(v.Local.iUB)!Required.set(V.Local.sLine(9).Float)
+							V.uGlobal.uBomX(v.Local.iUB)!Net.set(V.Local.sLine(10).Float)
+							V.uGlobal.uBomX(v.Local.iUB)!RouterNet.set(V.Local.sLine(11).Float)
+							V.uGlobal.uBomX(v.Local.iUB)!Parent.set(V.Local.sLine(12).RTrim)
+						F.Intrinsic.Control.EndIf
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Next(V.Local.iJ)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+V.Global.sExplodedBoms.Redim(-1,-1)
+
+Program.Sub.BOMGetUDT.End
+
+Program.Sub.BOMAddPos.Start
+V.Local.iUB.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.sLine.Declare(String)
+V.Local.sTemp.Declare(String)
+
+
+F.Intrinsic.Math.Add(V.uGlobal.uBomX.ubound,1,V.Local.iUB)
+F.Intrinsic.Control.If(V.Local.iUB,=,0)
+	V.uGlobal.uBomX.Redim(0,0)
+F.Intrinsic.Control.Else
+	V.uGlobal.uBomX.RedimPreserve(0,V.Local.iUB)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Split(V.Args.sLine,"|~|",V.Local.sLine)
+V.uGlobal.uBomX(v.Local.iUB)!BOM.set(V.Global.sExplodedBoms(v.Args.iBom))
+V.uGlobal.uBomX(v.Local.iUB)!Line.set(V.Local.sLine(0))
+V.uGlobal.uBomX(v.Local.iUB)!Seq.set(V.Local.sLine(1))
+F.Intrinsic.String.Replace(V.uGlobal.uBomX(v.Local.iUB)!Seq,"*","",V.Local.sTemp)
+F.Intrinsic.String.Replace(V.Local.sTemp," ","",V.Local.sTemp)
+F.Intrinsic.Control.If(V.Local.sTemp.IsNumeric,=,True)
+	V.uGlobal.uBomX(v.Local.iUB)!SeqNo.set(V.Local.sTemp.long)
+F.Intrinsic.Control.Else
+	V.uGlobal.uBomX(v.Local.iUB)!SeqNo.set(0)
+F.Intrinsic.Control.EndIf
+V.uGlobal.uBomX(v.Local.iUB)!Part.set(V.Local.sLine(2))
+V.uGlobal.uBomX(v.Local.iUB)!Description.set(V.Local.sLine(3))
+V.uGlobal.uBomX(v.Local.iUB)!Category.set(V.Local.sLine(4))
+V.uGlobal.uBomX(v.Local.iUB)!Source.set(V.Local.sLine(5))
+V.uGlobal.uBomX(v.Local.iUB)!Quantity.set(V.Local.sLine(6))
+V.uGlobal.uBomX(v.Local.iUB)!OnHand.set(V.Local.sLine(7))
+V.uGlobal.uBomX(v.Local.iUB)!OnOrder.set(V.Local.sLine(8))
+V.uGlobal.uBomX(v.Local.iUB)!Required.set(V.Local.sLine(9))
+V.uGlobal.uBomX(v.Local.iUB)!Net.set(V.Local.sLine(10))
+V.uGlobal.uBomX(v.Local.iUB)!RouterNet.set(V.Local.sLine(11))
+V.uGlobal.uBomX(v.Local.iUB)!Parent.set(V.Local.sLine(12))
+
+Program.Sub.BOMAddPos.End
+
+
