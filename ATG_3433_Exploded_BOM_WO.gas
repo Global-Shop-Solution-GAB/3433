@@ -1,0 +1,3429 @@
+Program.Sub.ScreenSU.Start
+gui.F_BOM_WO..create
+gui.F_BOM_WO..caption("Exploded BOM Work Order Edit")
+gui.F_BOM_WO..size(12275,11025)
+gui.F_BOM_WO..position(0,0)
+gui.F_BOM_WO..event(resize,f_bom_wo_resize)
+gui.F_BOM_WO..event(unload,f_bom_wo_unload)
+gui.F_BOM_WO..alwaysontop(False)
+gui.F_BOM_WO..fontname("Arial")
+gui.F_BOM_WO..fontsize(8)
+gui.F_BOM_WO..forecolor(0)
+gui.F_BOM_WO..fontstyle(,,,,)
+gui.F_BOM_WO..BackColor(-2147483633)
+gui.F_BOM_WO..controlbox(True)
+gui.F_BOM_WO..maxbutton(True)
+gui.F_BOM_WO..minbutton(True)
+gui.F_BOM_WO..mousepointer(0)
+gui.F_BOM_WO..moveable(True)
+gui.F_BOM_WO..sizeable(True)
+gui.F_BOM_WO..ShowInTaskBar(True)
+gui.F_BOM_WO..titlebar(True)
+gui.F_BOM_WO.frmFilters.create(frame)
+gui.F_BOM_WO.frmFilters.caption("Show:")
+gui.F_BOM_WO.frmFilters.size(5115,750)
+gui.F_BOM_WO.frmFilters.position(6800,9600)
+gui.F_BOM_WO.frmFilters.visible(True)
+gui.F_BOM_WO.frmFilters.borderstyle(1)
+gui.F_BOM_WO.frmFilters.fontname("Arial")
+gui.F_BOM_WO.frmFilters.fontsize(8)
+gui.F_BOM_WO.frmButtons.create(frame)
+gui.F_BOM_WO.frmButtons.caption("")
+gui.F_BOM_WO.frmButtons.size(6570,950)
+gui.F_BOM_WO.frmButtons.position(200,9600)
+gui.F_BOM_WO.frmButtons.visible(True)
+gui.F_BOM_WO.frmButtons.borderstyle(0)
+gui.F_BOM_WO.frmButtons.fontname("Arial")
+gui.F_BOM_WO.frmButtons.fontsize(8)
+gui.F_BOM_WO.frmHeader.create(frame)
+gui.F_BOM_WO.frmHeader.caption("Frame")
+gui.F_BOM_WO.frmHeader.size(9630,540)
+gui.F_BOM_WO.frmHeader.position(200,100)
+gui.F_BOM_WO.frmHeader.visible(True)
+gui.F_BOM_WO.frmHeader.borderstyle(0)
+gui.F_BOM_WO.frmHeader.fontname("Arial")
+gui.F_BOM_WO.frmHeader.fontsize(8)
+gui.F_BOM_WO.frmSeq.create(frame)
+gui.F_BOM_WO.frmSeq.caption("Sequence")
+gui.F_BOM_WO.frmSeq.size(11715,1150)
+gui.F_BOM_WO.frmSeq.position(200,700)
+gui.F_BOM_WO.frmSeq.visible(True)
+gui.F_BOM_WO.frmSeq.borderstyle(1)
+gui.F_BOM_WO.frmSeq.fontname("Arial")
+gui.F_BOM_WO.frmSeq.fontsize(8)
+gui.F_BOM_WO.lbl1.create(label,"Work Order",True,1935,255,1,0,0,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl1.parent("frmheader")
+gui.F_BOM_WO.lbl1.defaultvalue("")
+gui.F_BOM_WO.lbl1.controlgroup(0)
+gui.F_BOM_WO.txtWO.create(textbox,"",True,1215,330,0,0,200,True,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtWO.parent("frmheader")
+gui.F_BOM_WO.txtWO.event(lostfocus,txtwo_lostfocus)
+gui.F_BOM_WO.txtWO.defaultvalue("")
+gui.F_BOM_WO.txtWO.controlgroup(0)
+gui.F_BOM_WO.gsfgWO.create(gsflexgrid)
+gui.F_BOM_WO.gsfgWO.FixedRows(0)
+gui.F_BOM_WO.gsfgWO.FixedCols(0)
+gui.F_BOM_WO.gsfgWO.visible(True)
+gui.F_BOM_WO.gsfgWO.size(11700,7700)
+gui.F_BOM_WO.gsfgWO.zorder(0)
+gui.F_BOM_WO.gsfgWO.position(200,1900)
+gui.F_BOM_WO.gsfgWO.enabled(True)
+gui.F_BOM_WO.gsfgWO.event(mousedown,gsfgwo_mousedown)
+gui.F_BOM_WO.gsfgWO.event(commandclick,gsfgwo_commandclick_new)
+gui.F_BOM_WO.cmdReschedul.create(button)
+gui.F_BOM_WO.cmdReschedul.caption("Reschedule All Jobs")
+gui.F_BOM_WO.cmdReschedul.visible(True)
+gui.F_BOM_WO.cmdReschedul.size(1000,550)
+gui.F_BOM_WO.cmdReschedul.zorder(0)
+gui.F_BOM_WO.cmdReschedul.position(0,200)
+gui.F_BOM_WO.cmdReschedul.enabled(True)
+gui.F_BOM_WO.cmdReschedul.parent("frmbuttons")
+gui.F_BOM_WO.cmdReschedul.fontname("Arial")
+gui.F_BOM_WO.cmdReschedul.fontsize(8)
+gui.F_BOM_WO.cmdReschedul.event(click,cmdreschedul_click)
+gui.F_BOM_WO.cmdReschedul.disableonclick(20)
+gui.F_BOM_WO.cmdReschedul.tooltip("Use this button to apply changes made and to reschedule the parent job")
+gui.F_BOM_WO.cmdReschedul.defaultvalue("")
+gui.F_BOM_WO.cmdReschedul.controlgroup(0)
+gui.F_BOM_WO.chkLabor.create(checkbox)
+gui.F_BOM_WO.chkLabor.caption("Labor")
+gui.F_BOM_WO.chkLabor.visible(True)
+gui.F_BOM_WO.chkLabor.size(860,300)
+gui.F_BOM_WO.chkLabor.zorder(0)
+gui.F_BOM_WO.chkLabor.position(100,200)
+gui.F_BOM_WO.chkLabor.enabled(True)
+gui.F_BOM_WO.chkLabor.alignment(0)
+gui.F_BOM_WO.chkLabor.parent("frmfilters")
+gui.F_BOM_WO.chkLabor.fontname("Arial")
+gui.F_BOM_WO.chkLabor.fontsize(8)
+gui.F_BOM_WO.chkLabor.event(click,checkbox_click)
+gui.F_BOM_WO.chkLabor.defaultvalue("")
+gui.F_BOM_WO.chkLabor.controlgroup(0)
+gui.F_BOM_WO.chkMat.create(checkbox)
+gui.F_BOM_WO.chkMat.caption("Material")
+gui.F_BOM_WO.chkMat.visible(True)
+gui.F_BOM_WO.chkMat.size(995,300)
+gui.F_BOM_WO.chkMat.zorder(0)
+gui.F_BOM_WO.chkMat.position(1255,200)
+gui.F_BOM_WO.chkMat.enabled(True)
+gui.F_BOM_WO.chkMat.alignment(0)
+gui.F_BOM_WO.chkMat.parent("frmfilters")
+gui.F_BOM_WO.chkMat.fontname("Arial")
+gui.F_BOM_WO.chkMat.fontsize(8)
+gui.F_BOM_WO.chkMat.event(click,checkbox_click)
+gui.F_BOM_WO.chkMat.defaultvalue("")
+gui.F_BOM_WO.chkMat.controlgroup(0)
+gui.F_BOM_WO.chkComments.create(checkbox)
+gui.F_BOM_WO.chkComments.caption("Comments")
+gui.F_BOM_WO.chkComments.visible(True)
+gui.F_BOM_WO.chkComments.size(1205,225)
+gui.F_BOM_WO.chkComments.zorder(0)
+gui.F_BOM_WO.chkComments.position(100,475)
+gui.F_BOM_WO.chkComments.enabled(True)
+gui.F_BOM_WO.chkComments.alignment(0)
+gui.F_BOM_WO.chkComments.parent("frmfilters")
+gui.F_BOM_WO.chkComments.fontname("Arial")
+gui.F_BOM_WO.chkComments.fontsize(8)
+gui.F_BOM_WO.chkComments.event(click,checkbox_click)
+gui.F_BOM_WO.chkComments.defaultvalue("")
+gui.F_BOM_WO.chkComments.controlgroup(0)
+gui.F_BOM_WO.chkOutside.create(checkbox)
+gui.F_BOM_WO.chkOutside.caption("Outside Services")
+gui.F_BOM_WO.chkOutside.visible(True)
+gui.F_BOM_WO.chkOutside.size(1565,225)
+gui.F_BOM_WO.chkOutside.zorder(0)
+gui.F_BOM_WO.chkOutside.position(1255,475)
+gui.F_BOM_WO.chkOutside.enabled(True)
+gui.F_BOM_WO.chkOutside.alignment(0)
+gui.F_BOM_WO.chkOutside.parent("frmfilters")
+gui.F_BOM_WO.chkOutside.fontname("Arial")
+gui.F_BOM_WO.chkOutside.fontsize(8)
+gui.F_BOM_WO.chkOutside.event(click,checkbox_click)
+gui.F_BOM_WO.chkOutside.defaultvalue("")
+gui.F_BOM_WO.chkOutside.controlgroup(0)
+gui.F_BOM_WO.cmdWO.create(button)
+gui.F_BOM_WO.cmdWO.caption("^")
+gui.F_BOM_WO.cmdWO.visible(True)
+gui.F_BOM_WO.cmdWO.size(300,330)
+gui.F_BOM_WO.cmdWO.zorder(0)
+gui.F_BOM_WO.cmdWO.position(1300,200)
+gui.F_BOM_WO.cmdWO.enabled(True)
+gui.F_BOM_WO.cmdWO.parent("frmheader")
+gui.F_BOM_WO.cmdWO.fontname("Arial")
+gui.F_BOM_WO.cmdWO.fontsize(8)
+gui.F_BOM_WO.cmdWO.event(click,cmdwo_click)
+gui.F_BOM_WO.cmdWO.disableonclick(20)
+gui.F_BOM_WO.cmdWO.defaultvalue("")
+gui.F_BOM_WO.cmdWO.controlgroup(0)
+gui.F_BOM_WO.txtDescription.create(textbox,"",True,3000,330,0,4300,200,True,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtDescription.parent("frmheader")
+gui.F_BOM_WO.txtDescription.defaultvalue("")
+gui.F_BOM_WO.txtDescription.controlgroup(0)
+gui.F_BOM_WO.lbl2.create(label,"Description",True,1935,255,1,4300,0,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl2.parent("frmheader")
+gui.F_BOM_WO.lbl2.defaultvalue("")
+gui.F_BOM_WO.lbl2.controlgroup(0)
+gui.F_BOM_WO.txtPart.create(textbox,"",True,2500,330,0,1700,200,True,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtPart.parent("frmheader")
+gui.F_BOM_WO.txtPart.defaultvalue("")
+gui.F_BOM_WO.txtPart.controlgroup(0)
+gui.F_BOM_WO.lbl3.create(label,"Part",True,1935,255,1,1700,0,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl3.parent("frmheader")
+gui.F_BOM_WO.lbl3.defaultvalue("")
+gui.F_BOM_WO.lbl3.controlgroup(0)
+gui.F_BOM_WO.cmdShowAll.create(button)
+gui.F_BOM_WO.cmdShowAll.caption("Show All Jobs")
+gui.F_BOM_WO.cmdShowAll.visible(True)
+gui.F_BOM_WO.cmdShowAll.size(1000,550)
+gui.F_BOM_WO.cmdShowAll.zorder(0)
+gui.F_BOM_WO.cmdShowAll.position(1100,200)
+gui.F_BOM_WO.cmdShowAll.enabled(True)
+gui.F_BOM_WO.cmdShowAll.parent("frmbuttons")
+gui.F_BOM_WO.cmdShowAll.fontname("Arial")
+gui.F_BOM_WO.cmdShowAll.fontsize(8)
+gui.F_BOM_WO.cmdShowAll.event(click,cmdshowall_click)
+gui.F_BOM_WO.cmdShowAll.disableonclick(20)
+gui.F_BOM_WO.cmdShowAll.tooltip("Use this button to show all available jobs in the grid above")
+gui.F_BOM_WO.cmdShowAll.defaultvalue("")
+gui.F_BOM_WO.cmdShowAll.controlgroup(0)
+gui.F_BOM_WO.cmdHideAll.create(button)
+gui.F_BOM_WO.cmdHideAll.caption("Hide All Jobs")
+gui.F_BOM_WO.cmdHideAll.visible(True)
+gui.F_BOM_WO.cmdHideAll.size(1000,550)
+gui.F_BOM_WO.cmdHideAll.zorder(0)
+gui.F_BOM_WO.cmdHideAll.position(2200,200)
+gui.F_BOM_WO.cmdHideAll.enabled(True)
+gui.F_BOM_WO.cmdHideAll.parent("frmbuttons")
+gui.F_BOM_WO.cmdHideAll.fontname("Arial")
+gui.F_BOM_WO.cmdHideAll.fontsize(8)
+gui.F_BOM_WO.cmdHideAll.event(click,cmdhideall_click)
+gui.F_BOM_WO.cmdHideAll.disableonclick(20)
+gui.F_BOM_WO.cmdHideAll.tooltip("Use this button to hide all jobs displayed in the grid above")
+gui.F_BOM_WO.cmdHideAll.defaultvalue("")
+gui.F_BOM_WO.cmdHideAll.controlgroup(0)
+gui.F_BOM_WO.chkAutoRefresh.create(checkbox)
+gui.F_BOM_WO.chkAutoRefresh.caption("Auto Refresh Filters")
+gui.F_BOM_WO.chkAutoRefresh.visible(True)
+gui.F_BOM_WO.chkAutoRefresh.size(1835,330)
+gui.F_BOM_WO.chkAutoRefresh.zorder(0)
+gui.F_BOM_WO.chkAutoRefresh.position(2860,200)
+gui.F_BOM_WO.chkAutoRefresh.enabled(True)
+gui.F_BOM_WO.chkAutoRefresh.alignment(0)
+gui.F_BOM_WO.chkAutoRefresh.parent("frmfilters")
+gui.F_BOM_WO.chkAutoRefresh.fontname("Arial")
+gui.F_BOM_WO.chkAutoRefresh.fontsize(8)
+gui.F_BOM_WO.chkAutoRefresh.defaultvalue("")
+gui.F_BOM_WO.chkAutoRefresh.controlgroup(0)
+gui.F_BOM_WO.cmdRefresh.create(button)
+gui.F_BOM_WO.cmdRefresh.caption("Refresh Filters")
+gui.F_BOM_WO.cmdRefresh.visible(True)
+gui.F_BOM_WO.cmdRefresh.size(1000,550)
+gui.F_BOM_WO.cmdRefresh.zorder(0)
+gui.F_BOM_WO.cmdRefresh.position(5500,200)
+gui.F_BOM_WO.cmdRefresh.enabled(True)
+gui.F_BOM_WO.cmdRefresh.parent("frmbuttons")
+gui.F_BOM_WO.cmdRefresh.fontname("Arial")
+gui.F_BOM_WO.cmdRefresh.fontsize(8)
+gui.F_BOM_WO.cmdRefresh.event(click,cmdrefresh_click)
+gui.F_BOM_WO.cmdRefresh.disableonclick(20)
+gui.F_BOM_WO.cmdRefresh.tooltip("Use this button to refresh any filters applied")
+gui.F_BOM_WO.cmdRefresh.defaultvalue("")
+gui.F_BOM_WO.cmdRefresh.controlgroup(0)
+gui.F_BOM_WO.lblNote.create(label,"",True,5765,255,1,0,0,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lblNote.parent("frmbuttons")
+gui.F_BOM_WO.lblNote.ForeColor(255)
+gui.F_BOM_WO.lblNote.defaultvalue("")
+gui.F_BOM_WO.lblNote.controlgroup(0)
+gui.F_BOM_WO.lbl5.create(label,"Suffix",True,1200,255,1,100,200,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl5.parent("frmseq")
+gui.F_BOM_WO.lbl5.defaultvalue("")
+gui.F_BOM_WO.lbl5.controlgroup(0)
+gui.F_BOM_WO.txtSuffix.create(textbox,"",True,600,330,0,100,400,False,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtSuffix.parent("frmseq")
+gui.F_BOM_WO.txtSuffix.maxLength(3)
+gui.F_BOM_WO.txtSuffix.defaultvalue("")
+gui.F_BOM_WO.txtSuffix.controlgroup(0)
+gui.F_BOM_WO.txtSeq.create(textbox,"",True,1000,330,0,800,400,True,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtSeq.parent("frmseq")
+gui.F_BOM_WO.txtSeq.numericonly(2)
+gui.F_BOM_WO.txtSeq.event(gotfocus,selectalltext)
+gui.F_BOM_WO.txtSeq.maxLength(6)
+gui.F_BOM_WO.txtSeq.event(lostfocus,txtseq_lostfocus)
+gui.F_BOM_WO.txtSeq.defaultvalue("")
+gui.F_BOM_WO.txtSeq.controlgroup(0)
+gui.F_BOM_WO.dlstType.create(dropdownlist)
+gui.F_BOM_WO.dlstType.visible(True)
+gui.F_BOM_WO.dlstType.size(600,330)
+gui.F_BOM_WO.dlstType.zorder(0)
+gui.F_BOM_WO.dlstType.position(1900,400)
+gui.F_BOM_WO.dlstType.enabled(True)
+gui.F_BOM_WO.dlstType.parent("frmseq")
+gui.F_BOM_WO.dlstType.fontname("Arial")
+gui.F_BOM_WO.dlstType.fontsize(8)
+gui.F_BOM_WO.dlstType.event(click,dlsttype_click)
+gui.F_BOM_WO.dlstType.defaultvalue("")
+gui.F_BOM_WO.dlstType.controlgroup(0)
+gui.F_BOM_WO.txtSeqPart.create(textbox,"",True,2000,330,0,2600,400,True,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtSeqPart.parent("frmseq")
+gui.F_BOM_WO.txtSeqPart.maxLength(20)
+gui.F_BOM_WO.txtSeqPart.defaultvalue("")
+gui.F_BOM_WO.txtSeqPart.controlgroup(0)
+gui.F_BOM_WO.txtSeqDesc.create(textbox,"",True,2500,330,0,5100,400,True,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtSeqDesc.parent("frmseq")
+gui.F_BOM_WO.txtSeqDesc.maxLength(30)
+gui.F_BOM_WO.txtSeqDesc.defaultvalue("")
+gui.F_BOM_WO.txtSeqDesc.controlgroup(0)
+gui.F_BOM_WO.dlstUM.create(dropdownlist)
+gui.F_BOM_WO.dlstUM.visible(True)
+gui.F_BOM_WO.dlstUM.size(800,330)
+gui.F_BOM_WO.dlstUM.zorder(0)
+gui.F_BOM_WO.dlstUM.position(7700,400)
+gui.F_BOM_WO.dlstUM.enabled(True)
+gui.F_BOM_WO.dlstUM.parent("frmseq")
+gui.F_BOM_WO.dlstUM.fontname("Arial")
+gui.F_BOM_WO.dlstUM.fontsize(8)
+gui.F_BOM_WO.dlstUM.defaultvalue("")
+gui.F_BOM_WO.dlstUM.controlgroup(0)
+gui.F_BOM_WO.txtRuntime.create(textbox,"",True,1100,330,0,8585,400,True,0,Arial,8,-2147483643,1)
+gui.F_BOM_WO.txtRuntime.parent("frmseq")
+gui.F_BOM_WO.txtRuntime.numericonly(1)
+gui.F_BOM_WO.txtRuntime.event(gotfocus,selectalltext)
+gui.F_BOM_WO.txtRuntime.maxLength(17)
+gui.F_BOM_WO.txtRuntime.defaultvalue("")
+gui.F_BOM_WO.txtRuntime.controlgroup(0)
+gui.F_BOM_WO.cmdSeqPart.create(button)
+gui.F_BOM_WO.cmdSeqPart.caption("^")
+gui.F_BOM_WO.cmdSeqPart.visible(True)
+gui.F_BOM_WO.cmdSeqPart.size(300,330)
+gui.F_BOM_WO.cmdSeqPart.zorder(0)
+gui.F_BOM_WO.cmdSeqPart.position(4700,400)
+gui.F_BOM_WO.cmdSeqPart.enabled(True)
+gui.F_BOM_WO.cmdSeqPart.parent("frmseq")
+gui.F_BOM_WO.cmdSeqPart.fontname("Arial")
+gui.F_BOM_WO.cmdSeqPart.fontsize(8)
+gui.F_BOM_WO.cmdSeqPart.event(click,cmdseqpart_click)
+gui.F_BOM_WO.cmdSeqPart.defaultvalue("")
+gui.F_BOM_WO.cmdSeqPart.controlgroup(0)
+gui.F_BOM_WO.cmdOk.create(button)
+gui.F_BOM_WO.cmdOk.caption("Ok")
+gui.F_BOM_WO.cmdOk.visible(True)
+gui.F_BOM_WO.cmdOk.size(500,330)
+gui.F_BOM_WO.cmdOk.zorder(0)
+gui.F_BOM_WO.cmdOk.position(11000,400)
+gui.F_BOM_WO.cmdOk.enabled(True)
+gui.F_BOM_WO.cmdOk.parent("frmseq")
+gui.F_BOM_WO.cmdOk.fontname("Arial")
+gui.F_BOM_WO.cmdOk.fontsize(8)
+gui.F_BOM_WO.cmdOk.event(click,cmdok_click)
+gui.F_BOM_WO.cmdOk.defaultvalue("")
+gui.F_BOM_WO.cmdOk.controlgroup(0)
+gui.F_BOM_WO.lbl6.create(label,"Sequence",True,1200,255,1,800,200,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl6.parent("frmseq")
+gui.F_BOM_WO.lbl6.defaultvalue("")
+gui.F_BOM_WO.lbl6.controlgroup(0)
+gui.F_BOM_WO.lbl7.create(label,"Type",True,660,255,1,1900,200,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl7.parent("frmseq")
+gui.F_BOM_WO.lbl7.defaultvalue("")
+gui.F_BOM_WO.lbl7.controlgroup(0)
+gui.F_BOM_WO.lbl8.create(label,"Part/WC/Outside",True,1200,255,1,2600,200,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl8.parent("frmseq")
+gui.F_BOM_WO.lbl8.defaultvalue("")
+gui.F_BOM_WO.lbl8.controlgroup(0)
+gui.F_BOM_WO.lbl9.create(label,"Description",True,1200,255,1,5100,200,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl9.parent("frmseq")
+gui.F_BOM_WO.lbl9.defaultvalue("")
+gui.F_BOM_WO.lbl9.controlgroup(0)
+gui.F_BOM_WO.lbl20.create(label,"UM",True,1200,255,1,7700,200,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl20.parent("frmseq")
+gui.F_BOM_WO.lbl20.defaultvalue("")
+gui.F_BOM_WO.lbl20.controlgroup(0)
+gui.F_BOM_WO.lbl22.create(label,"Runtime/Qty",True,1200,255,1,8585,200,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lbl22.parent("frmseq")
+gui.F_BOM_WO.lbl22.defaultvalue("")
+gui.F_BOM_WO.lbl22.controlgroup(0)
+gui.F_BOM_WO.lblSeqNote.create(label,"",True,11385,465,1,100,700,True,0,Arial,8,-2147483633,0)
+gui.F_BOM_WO.lblSeqNote.parent("frmseq")
+gui.F_BOM_WO.lblSeqNote.ForeColor(255)
+gui.F_BOM_WO.lblSeqNote.defaultvalue("")
+gui.F_BOM_WO.lblSeqNote.controlgroup(0)
+gui.F_BOM_WO.cmdReloadBOM.create(button)
+gui.F_BOM_WO.cmdReloadBOM.caption("Refresh All Info")
+gui.F_BOM_WO.cmdReloadBOM.visible(True)
+gui.F_BOM_WO.cmdReloadBOM.size(1000,550)
+gui.F_BOM_WO.cmdReloadBOM.zorder(0)
+gui.F_BOM_WO.cmdReloadBOM.position(3300,200)
+gui.F_BOM_WO.cmdReloadBOM.enabled(True)
+gui.F_BOM_WO.cmdReloadBOM.parent("frmbuttons")
+gui.F_BOM_WO.cmdReloadBOM.fontname("Arial")
+gui.F_BOM_WO.cmdReloadBOM.fontsize(8)
+gui.F_BOM_WO.cmdReloadBOM.event(click,cmdreloadbom_click)
+gui.F_BOM_WO.cmdReloadBOM.disableonclick(20)
+gui.F_BOM_WO.cmdReloadBOM.tooltip("Use this button to reload all BOM and JOB information to the screen")
+gui.F_BOM_WO.cmdReloadBOM.defaultvalue("")
+gui.F_BOM_WO.cmdReloadBOM.controlgroup(0)
+gui.F_BOM_WO.cmdReloadJobs.create(button)
+gui.F_BOM_WO.cmdReloadJobs.caption("Refresh Job Info")
+gui.F_BOM_WO.cmdReloadJobs.visible(True)
+gui.F_BOM_WO.cmdReloadJobs.size(1000,550)
+gui.F_BOM_WO.cmdReloadJobs.zorder(0)
+gui.F_BOM_WO.cmdReloadJobs.position(4400,200)
+gui.F_BOM_WO.cmdReloadJobs.enabled(True)
+gui.F_BOM_WO.cmdReloadJobs.parent("frmbuttons")
+gui.F_BOM_WO.cmdReloadJobs.fontname("Arial")
+gui.F_BOM_WO.cmdReloadJobs.fontsize(8)
+gui.F_BOM_WO.cmdReloadJobs.event(click,cmdreloadjobs_click)
+gui.F_BOM_WO.cmdReloadJobs.disableonclick(20)
+gui.F_BOM_WO.cmdReloadJobs.tooltip("Use this button to reload all Job sequence information to the grid")
+gui.F_BOM_WO.cmdReloadJobs.defaultvalue("")
+gui.F_BOM_WO.cmdReloadJobs.controlgroup(0)
+gui.F_BOM_WO.chkSeq.create(checkbox)
+gui.F_BOM_WO.chkSeq.caption("Hide 990,00 Sequences")
+gui.F_BOM_WO.chkSeq.visible(True)
+gui.F_BOM_WO.chkSeq.size(2145,195)
+gui.F_BOM_WO.chkSeq.zorder(0)
+gui.F_BOM_WO.chkSeq.position(2860,505)
+gui.F_BOM_WO.chkSeq.enabled(True)
+gui.F_BOM_WO.chkSeq.alignment(0)
+gui.F_BOM_WO.chkSeq.parent("frmfilters")
+gui.F_BOM_WO.chkSeq.fontname("Arial")
+gui.F_BOM_WO.chkSeq.fontsize(8)
+gui.F_BOM_WO.chkSeq.defaultvalue("")
+gui.F_BOM_WO.chkSeq.controlgroup(0)
+gui.F_BOM_WO.chkClosed.create(checkbox)
+gui.F_BOM_WO.chkClosed.caption("Closed")
+gui.F_BOM_WO.chkClosed.visible(True)
+gui.F_BOM_WO.chkClosed.size(900,255)
+gui.F_BOM_WO.chkClosed.zorder(0)
+gui.F_BOM_WO.chkClosed.position(10035,1160)
+gui.F_BOM_WO.chkClosed.enabled(True)
+gui.F_BOM_WO.chkClosed.alignment(0)
+gui.F_BOM_WO.chkClosed.fontname("Arial")
+gui.F_BOM_WO.chkClosed.fontsize(8)
+gui.F_BOM_WO.chkClosed.defaultvalue("")
+gui.F_BOM_WO.chkClosed.controlgroup(0)
+gui.F_BOM_WO.cmdWO.tabstop(True)
+gui.F_BOM_WO.cmdWO.tabindex(1)
+gui.F_BOM_WO.txtWO.tabstop(True)
+gui.F_BOM_WO.txtWO.tabindex(2)
+gui.F_BOM_WO.txtPart.tabstop(True)
+gui.F_BOM_WO.txtPart.tabindex(3)
+gui.F_BOM_WO.txtDescription.tabstop(True)
+gui.F_BOM_WO.txtDescription.tabindex(4)
+gui.F_BOM_WO.txtSuffix.tabstop(True)
+gui.F_BOM_WO.txtSuffix.tabindex(5)
+gui.F_BOM_WO.txtSeq.tabstop(True)
+gui.F_BOM_WO.txtSeq.tabindex(6)
+gui.F_BOM_WO.dlstType.tabstop(True)
+gui.F_BOM_WO.dlstType.tabindex(7)
+gui.F_BOM_WO.txtSeqPart.tabstop(True)
+gui.F_BOM_WO.txtSeqPart.tabindex(8)
+gui.F_BOM_WO.cmdSeqPart.tabstop(True)
+gui.F_BOM_WO.cmdSeqPart.tabindex(9)
+gui.F_BOM_WO.txtSeqDesc.tabstop(True)
+gui.F_BOM_WO.txtSeqDesc.tabindex(10)
+gui.F_BOM_WO.dlstUM.tabstop(True)
+gui.F_BOM_WO.dlstUM.tabindex(11)
+gui.F_BOM_WO.txtRuntime.tabstop(True)
+gui.F_BOM_WO.txtRuntime.tabindex(13)
+gui.F_BOM_WO.cmdOk.tabstop(True)
+gui.F_BOM_WO.cmdOk.tabindex(14)
+gui.F_BOM_WO.cmdReschedul.tabstop(True)
+gui.F_BOM_WO.cmdReschedul.tabindex(16)
+gui.F_BOM_WO.cmdShowAll.tabstop(True)
+gui.F_BOM_WO.cmdShowAll.tabindex(17)
+gui.F_BOM_WO.cmdHideAll.tabstop(True)
+gui.F_BOM_WO.cmdHideAll.tabindex(18)
+gui.F_BOM_WO.cmdReloadBOM.tabstop(True)
+gui.F_BOM_WO.cmdReloadBOM.tabindex(19)
+gui.F_BOM_WO.cmdReloadJobs.tabstop(True)
+gui.F_BOM_WO.cmdReloadJobs.tabindex(20)
+gui.F_BOM_WO.cmdRefresh.tabstop(True)
+gui.F_BOM_WO.cmdRefresh.tabindex(21)
+gui.F_BOM_WO.chkLabor.tabstop(True)
+gui.F_BOM_WO.chkLabor.tabindex(22)
+gui.F_BOM_WO.chkComments.tabstop(True)
+gui.F_BOM_WO.chkComments.tabindex(23)
+gui.F_BOM_WO.chkMat.tabstop(True)
+gui.F_BOM_WO.chkMat.tabindex(24)
+gui.F_BOM_WO.chkOutside.tabstop(True)
+gui.F_BOM_WO.chkOutside.tabindex(25)
+gui.F_BOM_WO.chkAutoRefresh.tabstop(True)
+gui.F_BOM_WO.chkAutoRefresh.tabindex(26)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Variable.Global.bCmdClick.Declare(Boolean,False)
+Variable.Global.bBusy.Declare(Boolean,False)
+Variable.Global.iLastCol.Declare(Long,0)
+Variable.Global.sLastJob.Declare(String)
+Variable.Global.bContinueSave.Declare(Boolean,False)
+Variable.Global.sLockedPos.Declare(String)
+Variable.Global.sDirtyJobs.Declare(String)
+Variable.UDT.GSFG.Define("Line",Long)
+Variable.UDT.GSFG.Define("Suffix",String)
+Variable.UDT.GSFG.Define("Seq",String)
+Variable.UDT.GSFG.Define("JobSeq",Long)
+Variable.UDT.GSFG.Define("Part",String)
+Variable.UDT.GSFG.Define("Description",String)
+Variable.UDT.GSFG.Define("Type",String)
+Variable.UDT.GSFG.Define("UM",String)
+Variable.UDT.GSFG.Define("Setup",String)
+Variable.UDT.GSFG.Define("Runtime",String)
+Variable.UDT.GSFG.Define("FGStyle",Long)
+Variable.UDT.GSFG.Define("LineType",Long)
+Variable.UDT.GSFG.Define("Position",Long)
+Variable.UDT.GSFG.Define("Visible",Boolean)
+Variable.UDT.GSFG.Define("bDirty",Boolean)
+Variable.UDT.GSFG.Define("bDelete",Boolean)
+Variable.UDT.GSFG.Define("bNewSeq",Boolean)
+Variable.UDT.GSFG.Define("OpCode",String)
+Variable.UDT.GSFG.Define("Date_Completed",String)
+Variable.UDT.GSFG.Define("Closed",String)
+Variable.uGlobal.uGSFG.Declare("GSFG")
+Variable.uGlobal.uTemp.Declare("GSFG")
+Variable.uGlobal.uDelete.Declare("GSFG")
+Variable.UDT.JobO.Define("Job",String,"JOB")
+Variable.UDT.JobO.Define("Suffix",String,"SUFFIX")
+Variable.UDT.JobO.Define("Seq",String,"SEQ")
+Variable.UDT.JobO.Define("SeqNo",Long)
+Variable.UDT.JobO.Define("PartWCOutside",String,"PART")
+Variable.UDT.JobO.Define("UM",String,"UM")
+Variable.UDT.JobO.Define("Description",String,"DESCRIPTION")
+Variable.UDT.JobO.Define("Runtime",String,"UNITS")
+Variable.UDT.JobO.Define("Type",String,"LMO")
+Variable.UDT.JobO.Define("OpCode",String,"OPERATION")
+Variable.UDT.JobO.Define("Setup",String,"HOURS_ACTUAL")
+Variable.UDT.JobO.Define("Closed",String,FLAG_CLOSED)
+Variable.UDT.JobO.Define("Date_Completed",String,Date_Completed)
+Variable.uGlobal.uJobO.Declare("JobO")
+Variable.UDT.JobH.Define("Job",String,"JOB")
+Variable.UDT.JobH.Define("Suffix",String,"SUFFIX")
+Variable.UDT.JobH.Define("Part",String,"PART")
+Variable.UDT.JobH.Define("Description",String,"DESCRIPTION")
+Variable.UDT.JobH.Define("SuffixUsed",Boolean)
+Variable.uGlobal.uJobH.Declare("JobH")
+Variable.UDT.JobD.Define("Job",String,Job)
+Variable.UDT.JobD.Define("Suffix",String,SUFFIX)
+Variable.UDT.JobD.Define("Seq",String,SEQ)
+Variable.uGlobal.uJobD.Declare("JobD")
+Variable.UDT.Dlst.Define("ListIndex",Long)
+Variable.UDT.Dlst.Define("Value",String)
+Variable.uGlobal.uLMO.Declare("Dlst")
+Variable.uGlobal.uUM.Declare("Dlst")
+Program.External.Include.Library("ATG_3433_Exploded_BOM.lib")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Coded by: SMC
+'Project Star tDate: 9/22/2011
+'Hooks:
+'  Custom Menu Item
+'Other Components:
+'  Callwrapper 410000
+'Notes:
+'  Quote 2827 For customer Hellebusch Tool & Die
+'
+'       A new GAB Custom will be created to run from a Menu Item.  A Work Order field and browser will allow a user to select a top-level parent Work Order.  Once selected, it will populate a grid with what is essentially an
+'  exploded BOM with parent steps--up to four levels deep--which will each tie to the Work Order that was created for that step.  The columns of the grid will include the following:  Level, Sequence, Type (LMO),
+'  Part/Work Center/Outside, UM, Description, Setup, and Runtime.  Level and type will not be editable.
+'       Clicking on the Level column will explode/implode job sequences for that job.  The parent steps (the actual work order) will NOT be editable, and will appear in a separate color so that they can be differentiated from
+'  Job sequences.
+'
+'  Filter checkboxes will be available at the bottom of the screen:
+'  - Show Labor only
+'  - Show Material only
+'  - Show Comments off
+'  - Show Outside Services
+'
+'       Sequences that have had work done will not be deleted and the Sequence number may not be changed, but other sequences may be added or deleted for that job.
+'       This tool will only commit changes to the selected Work Order (and not on the BOM/Router itself).  Clicking a "Reschedule" button will commit these changes and reschedule the job.
+'
+'       The Work Order browser will display all jobs where Suffix='000'. To determine BOM relationship in order to populate the grid, use callwrapper 410000.  All steps that are Manufactured to Job in the return file
+'  will have a Work order tied to it.  The file also shows the parent of each step.  The job tied to that step will need to be found in JOB_HEADER.
+'
+'  Once clicking Save, all values will be updated to the Job_Operations table.  Then, each job (Parent and children) will need to be re-scheduled using the F.Global.APS.ScheduleJob function.
+
+
+F.Intrinsic.UI.InvokeWaitDialog("Loading data...",V.Screen.F_BOM_WO.Caption)
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass,72000)
+
+'F.Intrinsic.Debug.CallWrapperDebugEnable
+''F.Global.APS.ScheduleJob("002109","001","B",V.Ambient.Now)
+'F.Global.General.CallWrapperSync("50","")
+'F.Intrinsic.Debug.CallWrapperDebugDisable
+'F.Intrinsic.Control.CallSub(F_bom_wo_unload)
+F.Intrinsic.Control.CallSub(Bomclear)
+F.Intrinsic.Control.CallSub(Gsfgformat)
+V.uGlobal.uJobH.Redim(-1,-1)
+V.uGlobal.uJobO.Redim(-1,-1)
+F.Intrinsic.Control.CallSub(Pop_dlsts)
+'Gui.F_BOM_WO.chkComments.Value(1)
+Gui.F_BOM_WO.chkLabor.Value(1)
+Gui.F_BOM_WO.chkMat.Value(1)
+Gui.F_BOM_WO.chkOutside.Value(1)
+Gui.F_BOM_WO.txtWO.SetFocus
+'Gui.F_BOM_WO.txtWO.Text("A90210")
+Gui.F_BOM_WO.txtRuntime.Mask("#####0.0000")
+'Gui.F_BOM_WO.txtSetup.Mask("#####0.0000")
+Gui.F_BOM_WO.lblSeqNote.Caption("Note:  Changing a Sequence Number will delete the original sequence and create a new sequence.  When a job is Rescheduled, any deleted sequences that have had work applied to them will be added back to the job.")
+F.Intrinsic.Control.CallSub(Clear_seq_fields)
+F.Intrinsic.UI.CloseWaitDialog
+Gui.F_BOM_WO..Show
+
+'F.Intrinsic.Control.CallSub(Txtwo_lostfocus)
+
+
+Program.Sub.Main.End
+
+program.sub.f_bom_wo_unload.start
+F.ODBC.Connection!conx.Close
+F.Intrinsic.Control.end
+
+program.sub.f_bom_wo_unload.end
+
+program.sub.cmdreschedul_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdreschedul_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.Intrinsic.Control.CallSub(Save,"bAll",True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdreschedul_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdreschedul_click.end
+
+program.sub.cmdwo_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdwo_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sCol.Declare(String)
+V.Local.sColW.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sParams.Declare(String)
+V.Local.dDate1.Declare(Date)
+V.Local.dDate2.Declare(Date)
+V.Local.sDate1.Declare(String)
+V.Local.sDate2.Declare(String)
+F.Intrinsic.String.Split("Job*!*Part*!*Description","*!*",V.Local.sCol)
+F.Intrinsic.String.Split("1600*!*2300*!*3000","*!*",V.Local.sColW)
+V.Local.sQuery.Set("SELECT JOB,PART,DESCRIPTION FROM JOB_HEADER WHERE SUFFIX='000' AND (DATE_CLOSED='000000' OR DATE_CLOSED='') order by JOB")
+
+F.Intrinsic.UI.Browser("Select a Parent Job","conx",V.Local.sQuery,V.Local.sCol,V.Local.sColW,8000,7500,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.F_BOM_WO.txtWO.Text(V.Local.sRet(0))
+'	Gui.F_BOM_WO.txtPart.Text(V.Local.sRet(1))
+'	Gui.F_BOM_WO.txtDescription.Text(V.Local.sRet(2))
+			
+	F.Intrinsic.Control.CallSub(Txtwo_lostfocus)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdwo_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdwo_click.end
+
+program.sub.txtwo_lostfocus.start
+F.Intrinsic.Control.SetErrorHandler("txtwo_lostfocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.Intrinsic.Control.If(V.Global.bBusy,=,True)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+V.Global.bBusy.Set(True)
+
+Gui.F_BOM_WO..Enabled(False)
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtWO.Text,<>,V.Global.sLastJob)
+	V.Global.sLastJob.Set(V.Screen.F_BOM_WO!txtWO.Text)
+	F.Intrinsic.UI.InvokeWaitDialog("Loading ...",V.Screen.F_BOM_WO.Caption)
+	F.Intrinsic.Control.CallSub(Pop_all)
+	F.Intrinsic.UI.CloseWaitDialog
+F.Intrinsic.Control.EndIf
+Gui.F_BOM_WO..Enabled(True)
+V.Global.bBusy.Set(False)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtwo_lostfocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.txtwo_lostfocus.end
+
+Program.Sub.Pop_All.Start
+F.Intrinsic.Control.SetErrorHandler("Pop_All_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.sUDT.Declare(String)
+
+F.Intrinsic.Control.CallSub(Clear_seq_fields)
+
+'
+'
+
+
+F.Intrinsic.String.RTrim(V.Screen.F_BOM_WO!txtWO.Text,V.Local.sTemp)
+Gui.F_BOM_WO.txtWO.Text(V.Local.sTemp)
+F.Intrinsic.String.Concat("SELECT PART,LOCATION,DESCRIPTION FROM JOB_HEADER WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='000'",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstWO",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conx!rstWO.EOF,=,True)
+	F.Intrinsic.UI.Msgbox("Not a valid Parent Job",V.Screen.F_BOM_WO.Caption)
+	F.ODBC.conx!rstWO.Close
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Left(V.ODBC.conx!rstWO.FieldValRTrim!PART,20,V.Local.sPart)
+	Gui.F_BOM_WO.txtPart.Text(V.Local.sPart)
+	F.Intrinsic.String.Concat("SELECT DESCRIPTION FROM INVENTORY_MSTR WHERE PART='",V.Local.sPart,"' AND LOCATION='",V.ODBC.conx!rstWO.FieldValTrim!LOCATION,"'",V.Local.sQuery)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstINV",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstINV.EOF,<>,True)
+		Gui.F_BOM_WO.txtDescription.Text(V.ODBC.conx!rstINV.FieldValTrim!DESCRIPTION)
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO.txtDescription.Text(V.ODBC.conx!rstWO.FieldValTrim!DESCRIPTION)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conx!rstINV.Close
+	Gui.F_BOM_WO.txtDescription.Text(V.ODBC.conx!rstWO.FieldValTrim!DESCRIPTION)
+	F.Intrinsic.String.Concat("SELECT PART FROM BOM_ENG WHERE PART='",V.Local.sPart,"' AND IS_PARENT='Y'",V.Local.sQuery)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstBom",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstBom.EOF,=,True)
+		F.Intrinsic.UI.Msgbox("Not a valid BOM Parent",V.Screen.F_BOM_WO.Caption)
+		F.ODBC.conx!rstBom.Close
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conx!rstBom.Close
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rstWO.Close
+
+F.Intrinsic.UI.ChangeWaitStatus("Loading BOM data ...",0,1,4)
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uBomX!BOM,V.Local.sPart,1,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,=,"")
+	F.Intrinsic.Control.CallSub(Bomaddrecord,"sBom",V.Local.sPart)
+	F.Intrinsic.Control.CallSub(Bomgetudt)
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uBomX!BOM,V.Local.sPart,1,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,=,"")
+		F.Intrinsic.UI.Msgbox("Unable to retrieve Exploded BOM.",V.Screen.F_BOM_WO.Caption)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.Variable.UDTToString(V.uGlobal.uBomX,"Parent*!*BOM*!*Line*!*Seq*!*Part*!*Source",V.Ambient.NewLine,V.Ambient.Tab,V.Local.sUDT)
+	F.Intrinsic.Debug.SetLA("BOM UDT: ",V.Ambient.NewLine,V.Local.sUDT,V.Ambient.NewLine)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Pop_ugsfg,"Bom",V.Local.sPart,"Parent",V.Local.sPart,"iLoad",0)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Pop_All_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Pop_All.End
+
+Program.Sub.GSFGFormat.Start
+F.Intrinsic.Control.SetErrorHandler("GSFGFormat_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iC.Declare(Long)
+
+'Header Columns
+Gui.F_BOM_WO.gsfgWO.Cols(14)
+Gui.F_BOM_WO.gsfgWO.Rows(1)
+Gui.F_BOM_WO.gsfgWO.TextMatrix(1,0,"")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(2,0,"Suffix")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(3,0,"Level/Seq")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(4,0,"Part/WC/Outside")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(5,0,"Description")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(6,0,"Type")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(7,0,"UM")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(8,0,"Closed")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(9,0,"Actual")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(10,0,"Runtime/Qty")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(11,0,"Expanded")
+Gui.F_BOM_WO.gsfgWO.TextMatrix(12,0,"uPos")
+Gui.F_BOM_WO.gsfgWO.Rows(2)
+Gui.F_BOM_WO.gsfgWO.FixedRows(1)
+
+'F.Intrinsic.Control.CallSub(Colwidths)
+
+Gui.F_BOM_WO.gsfgWO.SetColumnPercentages("0:.03:.06:.09:.162:.213:.05:.075:.05:.09:.09:0:0:.09")
+
+
+'BOM rows- Non-Job
+F.Intrinsic.Control.For(V.Local.iC,0,13,1)
+'	F.Intrinsic.Control.If(V.Local.iC,<>,8)
+		Gui.F_BOM_WO.gsfgWO.BuildStyle(1,V.Local.iC,"Type","Locked","True")
+		Gui.F_BOM_WO.gsfgWO.BuildStyle(1,V.Local.iC,"Format","Alignment","2")
+		Gui.F_BOM_WO.gsfgWO.BuildStyle(1,V.Local.iC,"Color","Back",11468799)
+'	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+'Gui.F_BOM_WO.gsfgWO.BuildStyle(1,8,"Type","Checkbox",)
+'Gui.F_BOM_WO.gsfgWO.BuildStyle(1,8,"Color","Back",11468799)
+
+
+'BOM rows- Job -
+F.Intrinsic.Control.For(V.Local.iC,2,8,1)
+	Gui.F_BOM_WO.gsfgWO.BuildStyle(2,V.Local.iC,"Type","Locked","True")
+	Gui.F_BOM_WO.gsfgWO.BuildStyle(2,V.Local.iC,"Format","Alignment","2")
+	Gui.F_BOM_WO.gsfgWO.BuildStyle(2,V.Local.iC,"Color","Back",11468799)
+F.Intrinsic.Control.Next(V.Local.iC)
+'Gui.F_BOM_WO.gsfgWO.BuildStyle(2,8,"Type","Checkbox",)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,9,"Format","Alignment","4")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,9,"Type","Command","Refresh Job")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,10,"Format","Alignment","4")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,10,"Type","Command","Add Seq")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,13,"Format","Alignment",4)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,13,"Type","Command","Reschedule")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,1,"Format","Alignment",4)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,1,"FontStyle","Bold","True")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(2,1,"Type","Command","-")
+
+'BOM rows- Job +
+F.Intrinsic.Control.For(V.Local.iC,2,8,1)
+	Gui.F_BOM_WO.gsfgWO.BuildStyle(3,V.Local.iC,"Type","Locked","True")
+	Gui.F_BOM_WO.gsfgWO.BuildStyle(3,V.Local.iC,"Format","Alignment","2")
+	Gui.F_BOM_WO.gsfgWO.BuildStyle(3,V.Local.iC,"Color","Back",11468799)
+F.Intrinsic.Control.Next(V.Local.iC)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,9,"Format","Alignment","4")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,9,"Type","Command","Refresh Job")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,10,"Format","Alignment","4")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,10,"Type","Command","Add Seq")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,13,"Format","Alignment",4)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,13,"Type","Command","Reschedule")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,1,"Format","Alignment","4")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,1,"FontStyle","Bold","True")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(3,1,"Type","Command","+")
+'Gui.F_BOM_WO.gsfgWO.BuildStyle(3,8,"Type","Checkbox",)
+'Gui.F_BOM_WO.gsfgWO.BuildStyle(3,8,"Color","Back",11468799)
+
+
+'-----------------------------------------Redo buildstyle it is not working------------------------------------------
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,0,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,0,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,1,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,1,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,2,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,2,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,3,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,3,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,4,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,4,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,5,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,5,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,6,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,6,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,7,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,7,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,8,"Type","Checkbox",)
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,9,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,9,"Type","Locked","True")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,9,"Format","Mask","#####0.0000")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,10,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,10,"Type","Locked","True")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,10,"Format","Mask","#####0.0000")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,11,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,11,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,12,"Format","Alignment",2)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,12,"Type","Locked","True")
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,13,"Format","Alignment",4)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(4,13,"Type","Command","Delete")
+
+''WO Rows - Work not done
+'F.Intrinsic.Control.For(V.Local.iC,0,13,1)
+'	F.Intrinsic.Control.If(V.Local.iC,<>,8)
+'		Gui.F_BOM_WO.gsfgWO.BuildStyle(4,V.Local.iC,"Format","Alignment","2")
+'		Gui.F_BOM_WO.gsfgWO.BuildStyle(4,V.Local.iC,"Type","Locked","True")
+'	F.Intrinsic.Control.EndIf
+'F.Intrinsic.Control.Next(V.Local.iC)
+'Gui.F_BOM_WO.gsfgWO.BuildStyle(4,13,"Type","Command","Delete")
+
+'Gui.F_BOM_WO.gsfgWO.BuildStyle(4,13,"Format","Alignment","4")
+
+
+'WO Rows - Work Done
+F.Intrinsic.Control.For(V.Local.iC,0,13,1)
+	F.Intrinsic.Control.If(V.Local.iC,<>,8)
+		Gui.F_BOM_WO.gsfgWO.BuildStyle(5,V.Local.iC,"Format","Alignment","2")
+		Gui.F_BOM_WO.gsfgWO.BuildStyle(5,V.Local.iC,"Type","Locked","True")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+Gui.F_BOM_WO.gsfgWO.BuildStyle(5,9,"Format","Mask","#####0.0000")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(5,10,"Format","Mask","#####0.0000")
+Gui.F_BOM_WO.gsfgWO.BuildStyle(5,8,"Type","Checkbox",)
+
+
+Gui.F_BOM_WO.gsfgWO.BuildStyle(6,0,"Type","Locked",True)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GSFGFormat_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.GSFGFormat.End
+
+Program.Sub.Pop_uGSFG_BOM.Start
+F.Intrinsic.Control.SetErrorHandler("Pop_uGSFG_BOM_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.sHRet.Declare(String)
+V.Local.iTemp.Declare(Long)
+V.Local.iRet.Declare(Long)
+V.Local.iHTemp.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.iUB.Declare(Long,-1)
+V.Local.sQuery.Declare(String)
+V.Local.iMaxLine.Declare(Long,-1)
+
+'Note that LineType/FGStyle are the elements in uGSFG that determine what type of line they are in the grid.  LineType=1 (FGStyle=3) is a job.  LineType=0 (FGStyle 1) is a bom component without a job.
+
+'Populate uJobH with all Jobs matching the parent job
+V.uGlobal.uJobH.Redim(-1,-1)
+F.Intrinsic.String.Concat("SELECT  RTRIM(JOB) AS JOB,RTRIM(SUFFIX) as SUFFIX,RTRIM(PART) AS PART, DESCRIPTION FROM JOB_HEADER WHERE (DATE_CLOSED='000000' OR DATE_CLOSED='') AND JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' ORDER BY JOB ASC, SUFFIX ASC",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenRecordsetRO("rstLoad",V.Local.sQuery)
+F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoad","v.uGlobal.uJobH",False)
+F.ODBC.conx!rstLoad.Close
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobH!SuffixUsed,False)
+
+'This section finds matches in uJobH and uBomX and adds an element in uGSFG (the UDT used to populate the grid on the screen)
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uBomX!BOM,V.Args.Bom,1,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sRet.UBound,1)
+		V.Local.iTemp.Set(V.Local.sRet(V.Local.iC))
+		F.Intrinsic.Math.Add(V.uGlobal.uGSFG.UBound,1,V.Local.iUB)
+		F.Intrinsic.Control.If(V.Local.iUB,=,0)
+			V.uGlobal.uGSFG.Redim(0,0)
+		F.Intrinsic.Control.Else
+			V.uGlobal.uGSFG.RedimPreserve(0,V.Local.iUB)
+		F.Intrinsic.Control.EndIf
+		
+		V.uGlobal.uGSFG(V.Local.iUB)!Line.Set(V.uGlobal.uBomX(V.Local.iTemp)!Line.Long)
+		F.Intrinsic.Control.If(V.uGlobal.uGSFG(V.Local.iUB)!Line,>,V.Local.iMaxLine)
+			V.Local.iMaxLine.Set(V.uGlobal.uGSFG(V.Local.iUB)!Line)
+		F.Intrinsic.Control.EndIf
+		V.uGlobal.uGSFG(V.Local.iUB)!Seq.Set(V.uGlobal.uBomX(V.Local.iTemp)!Seq.String)
+		V.uGlobal.uGSFG(V.Local.iUB)!JobSeq.Set(-1)
+		V.uGlobal.uGSFG(V.Local.iUB)!Part.Set(V.uGlobal.uBomX(V.Local.iTemp)!Part.String)
+		V.uGlobal.uGSFG(V.Local.iUB)!Description.Set(V.uGlobal.uBomX(V.Local.iTemp)!Description)
+		V.uGlobal.uGSFG(v.Local.iUB)!Position.Set(V.Local.iUB)
+		V.uGlobal.uGSFG(v.Local.iUB)!bDirty.Set(False)
+
+		
+		'If the source is MJ or MS, there may be a Job match in uJobH.  Any BOM component that is NOT MJ or MS will never have a job created from it.
+		V.Local.sTemp.Set(V.uGlobal.uBomX(V.Local.iTemp)!Source.Trim)
+		F.Intrinsic.Control.If(V.Local.sTemp.UCase,=,"MJ")
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobH!Part,V.uGlobal.uBomX(V.Local.iTemp)!Part,V.uGlobal.uJobH!SuffixUsed,False,V.Local.sHRet)
+		F.Intrinsic.Control.ElseIf(V.Local.sTemp.UCase,=,"MS")
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobH!Part,V.uGlobal.uBomX(V.Local.iTemp)!Part,V.uGlobal.uJobH!SuffixUsed,False,V.Local.sHRet)
+		F.Intrinsic.Control.Else
+			V.Local.sHRet.Set("")
+		F.Intrinsic.Control.EndIf
+		
+		F.Intrinsic.Control.If(V.Local.sHRet,<>,"")
+			V.uGlobal.uGSFG(V.Local.iUB)!LineType.Set(1)
+			V.uGlobal.uGSFG(V.Local.iUB)!FGStyle.Set(3)
+			V.uGlobal.uGSFG(V.Local.iUB)!Visible.Set(False)
+			F.Intrinsic.String.Split(V.Local.sHRet,"*!*",V.Local.sHRet)
+			V.Local.iHTemp.Set(V.Local.sHRet(0))
+			V.uGlobal.uGSFG(V.Local.iUB)!Suffix.Set(V.uGlobal.uJobH(V.Local.iHTemp)!Suffix)
+			V.uGlobal.uJobH(V.Local.iHTemp)!SuffixUsed.Set(True)
+		F.Intrinsic.Control.Else
+			V.uGlobal.uGSFG(V.Local.iUB)!LineType.Set(0)
+			V.uGlobal.uGSFG(V.Local.iUB)!FGStyle.Set(1)
+			V.uGlobal.uGSFG(V.Local.iUB)!Visible.Set(True)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIf
+
+'This section adds any other jobs within the Parent job where no uBomX match was found (this would be for any other jobs added to the BOM WO after it was initially created from the BOM).  These jobs are appended to the end of uGSFG and will never have a match in uBomX
+'Since uBomX!Source is not being set, no uJobH elements will match uBomX, and thus are appended to the end.
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uJobH!SuffixUsed,False,0,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sRet.UBound,1)
+		V.Local.iTemp.Set(V.Local.sRet(V.Local.iC))
+		F.Intrinsic.Math.Add(V.uGlobal.uGSFG.UBound,1,V.Local.iUB)
+		F.Intrinsic.Control.If(V.Local.iUB,=,0)
+			V.uGlobal.uGSFG.Redim(0,0)
+		F.Intrinsic.Control.Else
+			V.uGlobal.uGSFG.RedimPreserve(0,V.Local.iUB)
+		F.Intrinsic.Control.EndIf
+		
+		F.Intrinsic.Math.Add(V.Local.iMaxLine,1,V.Local.iMaxLine)
+		V.uGlobal.uGSFG(V.Local.iUB)!Line.Set(V.Local.iMaxLine)
+		V.uGlobal.uGSFG(V.Local.iUB)!Seq.Set("")
+		V.uGlobal.uGSFG(V.Local.iUB)!JobSeq.Set(-1)
+		V.uGlobal.uGSFG(V.Local.iUB)!Part.Set(V.uGlobal.uJobH(V.Local.iTemp)!Part.String)
+		V.uGlobal.uGSFG(V.Local.iUB)!Description.Set(V.uGlobal.uJobH(V.Local.iTemp)!Description)
+		V.uGlobal.uGSFG(v.Local.iUB)!Position.Set(V.Local.iUB)
+		V.uGlobal.uGSFG(v.Local.iUB)!bDirty.Set(False)
+		V.uGlobal.uGSFG(V.Local.iUB)!LineType.Set(1)
+		V.uGlobal.uGSFG(V.Local.iUB)!FGStyle.Set(3)
+		V.uGlobal.uGSFG(V.Local.iUB)!Visible.Set(False)
+		V.uGlobal.uGSFG(V.Local.iUB)!Suffix.Set(V.uGlobal.uJobH(V.Local.iTemp)!Suffix)
+		V.uGlobal.uJobH(V.Local.iHTemp)!SuffixUsed.Set(True)
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Pop_uGSFG_BOM_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Pop_uGSFG_BOM.End
+
+Program.Sub.Pop_uGSFG.Start
+F.Intrinsic.Control.SetErrorHandler("Pop_uGSFG_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sUDT.Declare(String)
+
+'
+'
+
+
+F.Intrinsic.Control.If(V.Args.iLoad,=,0)
+	V.uGlobal.uGSFG.Redim(-1,-1)
+	F.Intrinsic.UI.ChangeWaitStatus("Searching for Job - BOM relationships ...",1,1,4)
+	F.Intrinsic.Control.CallSub(Pop_ugsfg_bom,"Bom",V.Args.Bom,"Parent",V.Args.Parent)
+	F.Intrinsic.UI.ChangeWaitStatus("Loading Job Sequences ...",1,3,4)
+	F.Intrinsic.Control.CallSub(Pop_ugsfg_jobops,"bLoad",True)
+F.Intrinsic.Control.Elseif(V.Args.iLoad,=,1)
+	F.Intrinsic.UI.ChangeWaitStatus("Re-loading Job Sequences ...",1,1,4)
+	F.Intrinsic.Control.CallSub(Pop_ugsfg_jobops,"bLoad",False)
+F.Intrinsic.Control.ElseIf(V.Args.iLoad,=,2)
+	F.Intrinsic.UI.ChangeWaitStatus("Re-loading Job Sequences ...",1,1,4)
+	F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uGSFG!LineType,2)
+	F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uGSFG)
+	F.Intrinsic.Control.CallSub(Pop_ugsfg_jobops,"bLoad",True)
+F.Intrinsic.Control.ElseIf(V.Args.iLoad,=,3)
+	F.Intrinsic.UI.ChangeWaitStatus("Re-loading Job Sequences ...",1,1,4)
+	V.Global.sDirtyJobs.Redim(0,0)
+	V.Global.sDirtyJobs(0).Set(V.Args.iPos)
+	F.Intrinsic.Control.CallSub(Pop_ugsfg_jobops,"bLoad",False)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uGSFG!Line,False,V.uGlobal.uGSFG!LineType,False,V.uGlobal.uGSFG!JobSeq,False)
+F.Intrinsic.Variable.UDTToString(V.uGlobal.uGSFG,"Line*!*LineType*!*JobSeq*!*Suffix*!*Seq*!*Part*!*Description*!*Type*!*UM*!*Closed*!*Date_Completed*!*Setup*!*Runtime*!*Position*!*FGStyle",V.Ambient.NewLine,V.Ambient.Tab,V.Local.sUDT)
+F.Intrinsic.Debug.SetLA("UDT post sort:",V.Ambient.NewLine,V.Local.sUDT)
+F.Intrinsic.UI.ChangeWaitStatus("Loading data to grid ...",1,3,4)
+F.Intrinsic.Control.CallSub(Gsfgloadfromudt)
+F.Intrinsic.UI.ChangeWaitStatus("Loading ...",1,4,4)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Pop_uGSFG_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Pop_uGSFG.End
+
+Program.Sub.Pop_uGSFG_JobOps.Start
+F.Intrinsic.Control.SetErrorHandler("Pop_uGSFG_JobOps_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iPos.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iL.Declare(Long)
+V.Local.sSuffix.Declare(String)
+V.Local.iLine.Declare(Long)
+V.Local.iUB.Declare(Long)
+V.Local.sSeq.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sDRet.Declare(String)
+V.Local.sLRet.Declare(String)
+V.Local.iPosL.Declare(Long)
+
+V.uGlobal.uJobO.Redim(-1,-1)
+F.Intrinsic.String.Concat("SELECT  RTRIM(JOB) AS JOB,RTRIM(SUFFIX) as SUFFIX,RTRIM(PART) AS PART, SEQ, UM, DESCRIPTION, HOURS_ACTUAL,SETUP, UNITS,LMO,OPERATION, FLAG_CLOSED, DATE_COMPLETED FROM JOB_OPERATIONS WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' ORDER BY JOB ASC, SUFFIX ASC, SEQ ASC",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenRecordsetRO("rstLoad",V.Local.sQuery)
+F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoad","v.uGlobal.uJobO",False)
+F.ODBC.conx!rstLoad.Close
+
+V.uGlobal.uJobD.Redim(-1,-1)
+F.Intrinsic.String.Concat("SELECT  RTRIM(JOB) AS JOB,RTRIM(SUFFIX) as SUFFIX,SEQ FROM JOB_DETAIL WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' ORDER BY JOB ASC, SUFFIX ASC, SEQ ASC",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenRecordsetRO("rstLoad",V.Local.sQuery)
+F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoad","v.uGlobal.uJobD",False)
+F.ODBC.conx!rstLoad.Close
+
+F.Intrinsic.Control.If(V.Args.bLoad,=,True)
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!LineType,1,1,V.Local.sRet)
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Join(V.Global.sDirtyJobs,"*!*",V.Local.sRet)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Local.sRet,=,"")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+F.Intrinsic.Control.for(V.local.iC,0,V.Local.sRet.UBound,1)
+	V.Local.iPos.Set(V.Local.sRet(v.Local.iC))
+	V.Local.sSuffix.Set(V.uGlobal.uGSFG(v.Local.iPos)!Suffix)
+	V.Local.iLine.Set(V.uGlobal.uGSFG(v.Local.iPos)!Line)
+
+	F.Intrinsic.Control.If(V.Args.bLoad,=,False)
+		F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uGSFG!Suffix,V.Local.sSuffix,V.uGlobal.uGSFG!LineType,2)
+		F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uGSFG)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uJobO!Suffix,V.Local.sSuffix,1,V.Local.sLRet)
+	F.Intrinsic.Control.If(V.Local.sLRet,<>,"")
+		F.Intrinsic.String.Split(V.Local.sLRet,"*!*",V.Local.sLRet)
+		F.Intrinsic.Control.For(V.Local.iL,0,V.Local.sLRet.UBound,1)
+			V.Local.iPosL.Set(V.Local.sLRet(v.Local.iL))
+			F.Intrinsic.Math.Add(V.uGlobal.uGSFG.UBound,1,V.Local.iUB)
+			F.Intrinsic.Control.If(V.Local.iUB,=,0)
+				V.uGlobal.uGSFG.Redim(0,0)
+			F.Intrinsic.Control.Else
+				V.uGlobal.uGSFG.RedimPreserve(0,V.Local.iUB)
+			F.Intrinsic.Control.EndIf
+			V.uGlobal.uGSFG(v.Local.iUB)!Line.Set(V.Local.iLine)
+			V.uGlobal.uGSFG(v.Local.iUB)!Suffix.Set(V.Local.sSuffix)
+			V.uGlobal.uGSFG(v.Local.iUB)!Seq.Set(V.uGlobal.uJobO(v.Local.iPosL)!Seq)
+			V.Local.sSeq.Set(V.uGlobal.uJobO(v.Local.iPosL)!Seq.Long)
+			V.uGlobal.uGSFG(v.Local.iUB)!JobSeq.Set(V.Local.sSeq.Long)
+			V.uGlobal.uGSFG(v.Local.iUB)!Part.Set(V.uGlobal.uJobO(v.Local.iPosL)!PartWCOutside)
+			V.uGlobal.uGSFG(v.Local.iUB)!Description.Set(V.uGlobal.uJobO(v.Local.iPosL)!Description)
+			V.uGlobal.uGSFG(v.Local.iUB)!Type.Set(V.uGlobal.uJobO(v.Local.iPosL)!Type)
+			V.uGlobal.uGSFG(v.Local.iUB)!UM.Set(V.uGlobal.uJobO(v.Local.iPosL)!UM)
+			V.uGlobal.uGSFG(v.Local.iUB)!Setup.Set(V.uGlobal.uJobO(v.Local.iPosL)!Setup)
+			V.uGlobal.uGSFG(v.Local.iUB)!Runtime.Set(V.uGlobal.uJobO(v.Local.iPosL)!Runtime)
+			V.uGlobal.uGSFG(v.Local.iUB)!OpCode.Set(V.uGlobal.uJobO(v.Local.iPosL)!OpCode)
+			V.uGlobal.uGSFG(v.Local.iUB)!Position.Set(V.Local.iUB)
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobD!Suffix,V.uGlobal.uJobO(v.Local.iPosL)!Suffix,V.uGlobal.uJobD!Seq,V.uGlobal.uJobO(v.Local.iPosL)!Seq,V.Local.sDRet)
+			F.Intrinsic.Control.If(V.Local.sDRet,=,"")
+				V.uGlobal.uGSFG(v.Local.iUB)!FGStyle.Set(4)
+			F.Intrinsic.Control.Else
+				V.uGlobal.uGSFG(v.Local.iUB)!FGStyle.Set(5)
+			F.Intrinsic.Control.EndIf
+			V.uGlobal.uGSFG(v.Local.iUB)!Visible.Set(False)
+			V.uGlobal.uGSFG(V.Local.iUB)!LineType.Set(2)
+			V.uGlobal.uGSFG(V.Local.iUB)!bDirty.Set(False)
+			V.uGlobal.uGSFG(v.Local.iUB)!bNewSeq.Set(False)
+			V.uGlobal.uGSFG(v.Local.iUB)!bDelete.Set(False)
+			F.Intrinsic.Control.If(V.uGlobal.uJobO(v.Local.iPosL)!Closed,=,"Y")
+				V.uGlobal.uGSFG(v.Local.iUB)!Closed.Set("True")
+			F.Intrinsic.Control.Else
+				V.uGlobal.uGSFG(v.Local.iUB)!Closed.Set("False")
+			F.Intrinsic.Control.EndIf
+			V.uGlobal.uGSFG(v.Local.iUB)!Date_Completed.Set(V.uGlobal.uJobO(v.Local.iPosL)!Date_Completed)
+
+		F.Intrinsic.Control.Next(V.Local.iL)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Pop_uGSFG_JobOps_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Pop_uGSFG_JobOps.End
+
+Program.Sub.GSFGShow-HideWO.Start
+F.Intrinsic.Control.SetErrorHandler("GSFGShow-HideWO_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.bVisible.Declare(Boolean)
+V.Local.sRet.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sSuffix.Declare(String)
+V.Local.sSeq.Declare(String)
+V.Local.iPos.Declare(Long)
+V.Local.iCount.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.iUDT.Declare(Long)
+
+V.Local.bVisible.Set(V.Screen.F_BOM_WO!gsfgWO.Visible)
+F.Intrinsic.Control.If(V.Local.bVisible,=,True)
+	F.Intrinsic.UI.InvokeWaitDialog("Processing ...",V.Screen.F_BOM_WO.Caption)
+	Gui.F_BOM_WO.gsfgWO.Visible(False)
+F.Intrinsic.Control.EndIf
+
+Gui.F_BOM_WO.gsfgWO.GetTextMatrix(12,V.Args.iR,V.Local.sText)
+
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!Position,V.Local.sText.Long,4,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+
+		'will not expand/collapse non bom job+ rows
+		F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.sRet.Long)!FGStyle,<>,3)
+			F.Intrinsic.Control.If(V.uGlobal.uGSFG(V.Local.sRet.Long)!FGStyle,<>,2)
+				F.Intrinsic.Control.If(V.Local.bVisible,=,True)
+					F.Intrinsic.UI.CloseWaitDialog
+					Gui.F_BOM_WO.gsfgWO.Visible(True)
+				F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.ExitSub
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+
+		V.uGlobal.uGSFG(v.Local.sRet.Long)!Visible.Set(V.uGlobal.uGSFG(v.Local.sRet.Long)!Visible.Not)
+		F.Intrinsic.Control.CallSub(Gsfgmarkhiddenseqs,"iPos",V.Local.sRet.Long)
+		F.Intrinsic.Control.CallSub(Gsfgshow-hideseqs,"iPos",V.Local.sRet.Long)
+
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Local.bVisible,=,True)
+	F.Intrinsic.UI.CloseWaitDialog
+	Gui.F_BOM_WO.gsfgWO.Visible(True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GSFGShow-HideWO_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.GSFGShow-HideWO.End
+
+program.sub.cmdshowall_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdshowall_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.Intrinsic.UI.InvokeWaitDialog("Processing ...",V.Screen.F_BOM_WO.Caption)
+Gui.F_BOM_WO.gsfgWO.Visible(False)
+F.Intrinsic.Control.CallSub(Gsfgshow-hideall,"bFlag",True)
+
+Gui.F_BOM_WO.gsfgWO.Visible(True)
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdshowall_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdshowall_click.end
+
+program.sub.cmdhideall_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdhideall_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.Intrinsic.UI.InvokeWaitDialog("Processing ...",V.Screen.F_BOM_WO.Caption)
+Gui.F_BOM_WO.gsfgWO.Visible(False)
+
+F.Intrinsic.Control.CallSub(Gsfgshow-hideall,"bFlag",False)
+
+Gui.F_BOM_WO.gsfgWO.Visible(True)
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdhideall_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdhideall_click.end
+
+program.sub.checkbox_click.start
+F.Intrinsic.Control.SetErrorHandler("checkbox_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.iR.Declare(Long)
+V.Local.sRet.Declare(String)
+V.Local.iTemp.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sText.Declare(String)
+V.Local.bVisible.Declare(Boolean)
+
+
+
+'F.Intrinsic.Control.If(V.Global.bLoading,=,True)
+'	F.Intrinsic.Control.ExitSub
+'F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO!chkAutoRefresh.Value,=,0)
+	F.Intrinsic.Variable.ArgExists("bForceRefresh",V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.ElseIf(V.Args.bForceRefresh,=,False)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+'
+
+
+V.Local.bVisible.Set(V.Screen.F_BOM_WO!gsfgWO.Visible)
+F.Intrinsic.Control.If(V.Local.bVisible,=,True)
+	F.Intrinsic.UI.InvokeWaitDialog("Processing ...",V.Screen.F_BOM_WO.Caption)
+	Gui.F_BOM_WO.gsfgWO.Visible(False)
+F.Intrinsic.Control.EndIf
+
+'
+'F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!LineType,1,v.uGlobal.uGSFG!Visible,True,V.Local.sRet)
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!LineType,1,1,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iR,0,V.Local.sRet.UBound,1)
+		V.Local.iPos.Set(V.Local.sRet(v.Local.iR))
+		F.Intrinsic.Math.Add(V.Local.iPos,1,V.Local.iTemp)
+		Gui.F_BOM_WO.gsfgWO.GetTextMatrix(12,V.Local.iTemp,V.Local.sText)
+		F.Intrinsic.Control.If(V.Local.sText.Long,=,V.uGlobal.uGSFG(v.Local.iPos)!Position)
+			F.Intrinsic.Variable.ArgExists("bReApplyStyle",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,True)
+				F.Intrinsic.Control.If(V.Args.bReApplyStyle,=,True)
+
+
+
+					Gui.F_BOM_WO.gsfgWO.ApplyStyle(V.Local.iTemp,V.uGlobal.uGSFG(v.Local.iPos)!FGStyle)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.CallSub(Gsfgmarkhiddenseqs,"iPos",V.Local.iPos)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iR)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Gsfgshow-hideseqs,"iPos",-1)
+
+F.Intrinsic.Control.If(V.Local.bVisible,=,True)
+	F.Intrinsic.UI.CloseWaitDialog
+	Gui.F_BOM_WO.gsfgWO.Visible(True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("checkbox_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.checkbox_click.end
+
+program.sub.cmdrefresh_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdrefresh_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.Intrinsic.Control.CallSub(Checkbox_click,"bForceRefresh",True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdrefresh_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdrefresh_click.end
+
+Program.Sub.GSFGLoadFromUDT.Start
+F.Intrinsic.Control.SetErrorHandler("GSFGLoadFromUDT_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sBNRet.Declare(String)
+V.Local.sBJVRet.Declare(String)
+V.Local.sBJHRet.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iTemp.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.iPos.Declare(Long)
+
+Gui.F_BOM_WO.gsfgWO.Visible(False)
+Gui.F_BOM_WO.gsfgWO.Rows(1)
+F.Intrinsic.Math.Add(V.uGlobal.uGSFG.UBound,2,V.Local.iTemp)
+Gui.F_BOM_WO.gsfgWO.Rows(V.Local.iTemp)
+
+
+
+
+Gui.F_BOM_WO.gsfgWO.LoadFromUDT("uGlobal.uGSFG","Suffix::2*!*Seq::3*!*Part::4*!*Description::5*!*Type::6*!*UM::7*!*Closed::8*!*Setup::9*!*Runtime::10*!*Position::12",0)
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO!gsfgWO.Rows,=,1)
+	Gui.F_BOM_WO.gsfgWO.Rows(2)
+	Gui.F_BOM_WO.gsfgWO.FixedRows(1)
+	Gui.F_BOM_WO.gsfgWO.Visible(True)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Checkbox_click,"bForceRefresh",True,"bReApplyStyle",True)
+Gui.F_BOM_WO.gsfgWO.FixedRows(1)
+Gui.F_BOM_WO.gsfgWO.Visible(True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GSFGLoadFromUDT_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.GSFGLoadFromUDT.End
+
+Program.Sub.GSFGShow-HideSeqs.Start
+F.Intrinsic.Control.SetErrorHandler("GSFGShow-HideSeqs_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.iTemp.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.bVisible.Declare(Boolean)
+V.Local.bExists.Declare(Boolean)
+V.Local.sORet.Declare(String)
+
+V.Local.bVisible.Set(V.Screen.F_BOM_WO!gsfgWO.Visible)
+F.Intrinsic.Control.If(V.Local.bVisible,=,True)
+	F.Intrinsic.UI.InvokeWaitDialog("Processing ...",V.Screen.F_BOM_WO.Caption)
+	Gui.F_BOM_WO.gsfgWO.Visible(False)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.ArgExists("iPos",V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.Intrinsic.Control.If(V.Args.iPos,<>,-1)
+		F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Args.iPos.Long)!Line,V.uGlobal.uGSFG!LineType,2,V.Local.sRet)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!LineType,2,1,V.Local.sRet)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Else
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!LineType,2,1,V.Local.sRet)
+F.Intrinsic.Control.EndIf
+V.Local.ipos.Set(0)
+
+F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+	
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sRet.UBound,1)
+		V.Local.iPos.Set(V.Local.sRet(v.Local.iC))
+		F.Intrinsic.Math.Add(V.Local.iPos,1,V.Local.iTemp)
+		Gui.F_BOM_WO.gsfgWO.GetTextMatrix(12,V.Local.iTemp,V.Local.sTemp)
+		F.Intrinsic.Control.If(V.Local.sTemp.long,=,V.uGlobal.uGSFG(v.Local.iPos)!Position)
+			F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!Visible,=,False)
+				Gui.F_BOM_WO.gsfgWO.RowHeight(V.Local.iTemp,0)
+			F.Intrinsic.Control.Else
+				Gui.F_BOM_WO.gsfgWO.RowHeight(V.Local.iTemp,250)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Local.bVisible,=,True)
+	F.Intrinsic.UI.CloseWaitDialog
+	Gui.F_BOM_WO.gsfgWO.Visible(True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GSFGShow-HideSeqs_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.GSFGShow-HideSeqs.End
+
+Program.Sub.GSFGMarkHiddenSeqs.Start
+F.Intrinsic.Control.SetErrorHandler("GSFGMarkHiddenSeqs_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sBRet.Declare(String)
+V.Local.sORet.Declare(String)
+V.Local.iPos.Declare(Long)
+V.Local.iC.Declare(Long)
+
+V.Local.iPos.Set(V.Args.iPos)
+F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.local.iPos.Long)!Visible,=,False)
+	V.uGlobal.uGSFG(v.Local.iPos)!FGStyle.Set(3)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Visible,False)
+F.Intrinsic.Control.Else
+	V.uGlobal.uGSFG(v.Local.iPos)!FGStyle.Set(2)
+	'Hide 990,000 Sequences
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!chkSeq.Value,=,1)
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Seq,"990000",V.uGlobal.uGSFG!Visible,False)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Seq,"990000",V.uGlobal.uGSFG!Visible,True)
+	F.Intrinsic.Control.EndIf
+	'Show/Hide Labor
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!chkLabor.Value,=,1)
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"L",V.uGlobal.uGSFG!Visible,True)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"L",V.uGlobal.uGSFG!Visible,False)
+	F.Intrinsic.Control.EndIf
+	'Show/Hide Material
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!chkMat.Value,=,1)
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"M",V.uGlobal.uGSFG!Visible,True)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"M",V.uGlobal.uGSFG!Visible,False)
+	F.Intrinsic.Control.EndIf
+	'Show/Hide Outside
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!chkOutside.Value,=,1)
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"O",V.uGlobal.uGSFG!Visible,True)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"O",V.uGlobal.uGSFG!Visible,False)
+	F.Intrinsic.Control.EndIf
+	'Show/Hide Comments
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!chkComments.Value,=,1)
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"C",V.uGlobal.uGSFG!Visible,True)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.uGlobal.uGSFG!Type,"C",V.uGlobal.uGSFG!Visible,False)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!Line,V.uGlobal.uGSFG(v.Local.iPos)!Line,V.Local.sbret)
+F.Intrinsic.Control.EndIf
+'f.Intrinsic.Variable.UDTMultiSeek(v.uGlobal.uGSFG!LineType,2,v.uGlobal.uGSFG!Line,v.uGlobal.uGSFG(v.Local.iPos)!Line,v.uGlobal.uGSFG!bDelete,True,v.Local.sbret)
+F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDelete,True,V.Local.sbret)
+F.Intrinsic.Control.If(V.Local.sBRet,<>,"")
+	
+F.Intrinsic.Control.EndIf
+'f.Intrinsic.Variable.UDTMultiSeekSet(v.uGlobal.uGSFG!LineType,2,v.uGlobal.uGSFG!Line,v.uGlobal.uGSFG(v.Local.iPos)!Line,v.uGlobal.uGSFG!bDelete,True,v.uGlobal.uGSFG!Visible,False)
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uGSFG!bDelete,True,V.uGlobal.uGSFG!Visible,False)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GSFGMarkHiddenSeqs_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.GSFGMarkHiddenSeqs.End
+
+Program.Sub.GSFGShow-HideAll.Start
+F.Intrinsic.Control.SetErrorHandler("GSFGShow-HideAll_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iR.Declare(Long)
+V.Local.sRet.Declare(String)
+V.Local.iTemp.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sText.Declare(String)
+
+'
+F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!LineType,1,V.uGlobal.uGSFG!Visible,V.Args.bFlag.Not,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iR,0,V.Local.sRet.UBound,1)
+		V.Local.iPos.Set(V.Local.sRet(v.Local.iR))
+		F.Intrinsic.Math.Add(V.Local.iPos,1,V.Local.iTemp)
+		Gui.F_BOM_WO.gsfgWO.GetTextMatrix(12,V.Local.iTemp,V.Local.sText)
+		F.Intrinsic.Control.If(V.Local.sText.Long,=,V.uGlobal.uGSFG(v.Local.iPos)!Position)
+			V.uGlobal.uGSFG(v.Local.iPos)!Visible.Set(V.uGlobal.uGSFG(v.Local.iPos)!Visible.Not)
+			F.Intrinsic.Control.CallSub(Gsfgmarkhiddenseqs,"iPos",V.Local.iPos)
+
+
+
+			Gui.F_BOM_WO.gsfgWO.ApplyStyle(V.Local.iTemp,V.uGlobal.uGSFG(v.Local.iPos)!FGStyle)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iR)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Gsfgshow-hideseqs,"iPos",-1)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GSFGShow-HideAll_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.GSFGShow-HideAll.End
+
+program.sub.cmdok_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdok_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+Gui.F_BOM_WO..Enabled(False)
+F.Intrinsic.UI.InvokeWaitDialog("Processing ...",V.Screen.F_BOM_WO.Caption)
+F.Intrinsic.Control.CallSub(Add_seq)
+F.Intrinsic.UI.CloseWaitDialog
+Gui.F_BOM_WO..Enabled(True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdok_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdok_click.end
+
+Program.Sub.Pop_Seq_Fields.Start
+F.Intrinsic.Control.SetErrorHandler("Pop_Seq_Fields_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iR.Declare(Long)
+V.Local.iPos.Declare(Long)
+
+V.Local.iR.Set(V.Args.iR)
+V.Local.iPos.Set(V.Args.iPos)
+
+F.Intrinsic.Control.CallSub(Clear_seq_fields)
+
+F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,5)
+	Gui.F_BOM_WO.txtSeq.Enabled(False)
+F.Intrinsic.Control.Else
+	Gui.F_BOM_WO.txtSeq.Enabled(True)
+F.Intrinsic.Control.EndIf
+Gui.F_BOM_WO.txtSuffix.text(V.uGlobal.uGSFG(v.Local.iPos)!Suffix)
+Gui.F_BOM_WO.txtSuffix.SetMetaData(V.Local.iR,V.Local.iPos)
+F.Intrinsic.Control.If(V.Local.iR,<>,-1)
+	Gui.F_BOM_WO.txtSeq.Text(V.uGlobal.uGSFG(v.Local.iPos)!Seq)
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uLMO!Value,V.uGlobal.uGSFG(v.Local.iPos)!Type,4,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+		Gui.F_BOM_WO.dlstType.ListIndex(V.uGlobal.uLMO(v.Local.sRet.Long)!ListIndex)
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO.dlstType.ListIndex(-1)
+	F.Intrinsic.Control.EndIf
+	Gui.F_BOM_WO.txtSeqPart.Text(V.uGlobal.uGSFG(v.Local.iPos)!Part)
+	Gui.F_BOM_WO.txtSeqPart.SetMetaData(V.uGlobal.uGSFG(v.Local.iPos)!Part,V.uGlobal.uGSFG(v.Local.iPos)!OpCode)
+	Gui.F_BOM_WO.txtSeqDesc.Text(V.uGlobal.uGSFG(v.Local.iPos)!Description)
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uUM!Value,V.uGlobal.uGSFG(v.Local.iPos)!UM,4,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+		Gui.F_BOM_WO.dlstUM.ListIndex(V.uGlobal.uUM(v.Local.sRet.Long)!ListIndex)
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO.dlstUM.ListIndex(-1)
+	F.Intrinsic.Control.EndIf
+	
+'	F.Intrinsic.String.Format(V.uGlobal.uGSFG(v.Local.iPos)!Setup,"#####0.0000",V.Local.sText)
+'	Gui.F_BOM_WO.txtSetup.Text(V.Local.sText)
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!Closed,=,True)
+		Gui.F_BOM_WO.chkClosed.Value(1)
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO.chkClosed.Value(0)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.String.Format(V.uGlobal.uGSFG(v.Local.iPos)!Runtime,"#####0.0000",V.Local.sText)
+	Gui.F_BOM_WO.txtRuntime.Text(V.Local.sText)
+	Gui.F_BOM_WO.dlstType.Enabled(False)
+F.Intrinsic.Control.Else
+	Gui.F_BOM_WO.dlstType.Enabled(True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Pop_Seq_Fields_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Pop_Seq_Fields.End
+
+Program.Sub.Clear_Seq_Fields.Start
+F.Intrinsic.Control.SetErrorHandler("Clear_Seq_Fields_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+Gui.F_BOM_WO.txtSuffix.Text("")
+Gui.F_BOM_WO.txtSeq.Text("")
+Gui.F_BOM_WO.dlstType.ListIndex(-1)
+Gui.F_BOM_WO.dlstUM.ListIndex(-1)
+Gui.F_BOM_WO.txtSeqPart.Text("")
+Gui.F_BOM_WO.txtSeqDesc.Text("")
+'Gui.F_BOM_WO.txtSetup.Text("0.0000")
+Gui.F_BOM_WO.txtRuntime.Text("0.0000")
+Gui.F_BOM_WO.chkClosed.Value(0)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Clear_Seq_Fields_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Clear_Seq_Fields.End
+
+program.sub.txtseq_lostfocus.start
+F.Intrinsic.Control.SetErrorHandler("txtseq_lostfocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sText.Declare(String)
+
+F.Intrinsic.String.LPad(V.Screen.F_BOM_WO!txtSeq.Text,"0",6,V.Local.sText)
+Gui.F_BOM_WO.txtSeq.Text(V.Local.sText)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtseq_lostfocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.txtseq_lostfocus.end
+
+program.sub.selectalltext.start
+F.Intrinsic.Control.SetErrorHandler("selectalltext_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+Gui.[v.args.Screen].[v.args.ControlName].SelectAll
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("selectalltext_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+'	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.selectalltext.end
+
+Program.Sub.Pop_Dlsts.Start
+F.Intrinsic.Control.SetErrorHandler("Pop_Dlsts_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iC.Declare(Long)
+
+V.uGlobal.uLMO.Redim(0,3)
+V.uGlobal.uLMO(0)!ListIndex.Set(0)
+V.uGlobal.uLMO(0)!Value.Set("L")
+V.uGlobal.uLMO(1)!ListIndex.Set(1)
+V.uGlobal.uLMO(1)!Value.Set("M")
+V.uGlobal.uLMO(2)!ListIndex.Set(2)
+V.uGlobal.uLMO(2)!Value.Set("O")
+V.uGlobal.uLMO(3)!ListIndex.Set(3)
+V.uGlobal.uLMO(3)!Value.Set("C")
+F.Intrinsic.Control.For(V.Local.iC,0,3,1)
+	Gui.F_BOM_WO.dlstType.AddItem(V.uGlobal.uLMO(v.Local.iC)!Value,V.uGlobal.uLMO(v.Local.iC)!ListIndex)
+F.Intrinsic.Control.Next(V.Local.iC)
+'Gui.F_BOM_WO.dlstType.AddItem("L")
+'Gui.F_BOM_WO.dlstType.AddItem("M")
+'Gui.F_BOM_WO.dlstType.AddItem("O")
+'Gui.F_BOM_WO.dlstType.AddItem("C")
+V.Local.iC.Set(-1)
+V.uGlobal.uUM.Redim(-1,-1)
+F.ODBC.Connection!conx.OpenRecordsetRO("rstUM","SELECT CODE FROM V_UM_CODES ORDER BY CODE ASC")
+F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstUM.EOF,=,True)
+	F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+	F.Intrinsic.Control.If(V.Local.iC,=,0)
+		V.uGlobal.uUM.Redim(0,0)
+	F.Intrinsic.Control.Else
+		V.uGlobal.uUM.RedimPreserve(0,V.Local.iC)
+	F.Intrinsic.Control.EndIf
+	V.uGlobal.uUM(v.Local.iC)!Value.Set(V.ODBC.conx!rstUM.FieldVal!CODE)
+	V.uGlobal.uUM(v.Local.iC)!ListIndex.Set(V.Local.iC)
+	Gui.F_BOM_WO.dlstUM.AddItem(V.ODBC.conx!rstUM.FieldVal!CODE,V.Local.iC)
+	F.ODBC.conx!rstUM.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.conx!rstUM.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Pop_Dlsts_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Pop_Dlsts.End
+
+Program.Sub.Add_Seq.Start
+F.Intrinsic.Control.SetErrorHandler("Add_Seq_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iPos.Declare(Long)
+V.Local.iC.Declare(String)
+V.Local.bNew.Declare(Boolean)
+V.local.iCurPos.Declare(Long)
+V.Local.sDate.Declare(String)
+
+F.Intrinsic.String.Format(V.Ambient.Date,"YYMMDD",V.Local.sDate)
+
+'
+'
+
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtSeq.Text,=,"")
+	F.Intrinsic.UI.Msgbox("Please enter a valid Sequence Number",V.Screen.F_BOM_WO.Caption)
+	F.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!txtSeq.Text.long,=,0)
+	F.Intrinsic.UI.Msgbox("Please enter a valid Sequence Number",V.Screen.F_BOM_WO.Caption)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!dlstType.Text,=,"")
+	F.Intrinsic.UI.Msgbox("Please enter a Sequence Type",V.Screen.F_BOM_WO.Caption)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!dlstType.Text,<>,"C")
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtPart.Text.trim,=,"")
+		F.Intrinsic.UI.Msgbox("Please enter a Part/WC/Outside",V.Screen.F_BOM_WO.Caption)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!dlstUM.Text,=,"")
+		F.Intrinsic.UI.Msgbox("Please enter a UM",V.Screen.F_BOM_WO.Caption)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+v.local.iCurPos.Set(V.Screen.F_BOM_WO!txtSuffix.MetaData1.long)
+'
+
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtSuffix.MetaData0,=,-1)
+	V.Local.bNew.Set(True)
+f.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!txtSeq.Text.long,<>,V.uGlobal.uGSFG(V.Local.iCurPos)!Seq.Long)
+	V.Local.bNew.Set(True)
+F.Intrinsic.Control.Else
+	V.Local.bNew.Set(False)
+F.Intrinsic.Control.EndIf
+'
+
+F.Intrinsic.Control.If(V.Local.bNew,=,True)
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.uGlobal.uGSFG(V.Local.iCurPos)!Suffix,V.uGlobal.uGSFG!Seq,V.Screen.F_BOM_WO!txtSeq.Text,V.uGlobal.uGSFG!bDelete,False,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+		F.Intrinsic.UI.Msgbox("A Sequence with this number already exists.",V.Screen.F_BOM_WO.Caption)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtSuffix.MetaData0,<>,-1)
+		f.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtSeq.Text.long,<>,V.uGlobal.uGSFG(V.Local.iCurPos)!Seq.Long)
+			V.uGlobal.uGSFG(V.Local.iCurPos)!bDelete.Set(True)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Math.Add(V.uGlobal.uGSFG.UBound,1,V.Local.iPos)
+	F.Intrinsic.Control.If(V.Local.iPos,=,0)
+		V.uGlobal.uGSFG.Redim(0,0)
+	F.Intrinsic.Control.Else
+		V.uGlobal.uGSFG.RedimPreserve(0,V.Local.iPos)
+	F.Intrinsic.Control.EndIf
+	V.uGlobal.uGSFG(v.Local.iPos)!Line.Set(V.uGlobal.uGSFG(V.Local.iCurPos)!Line)
+	V.uGlobal.uGSFG(v.Local.iPos)!Suffix.Set(V.uGlobal.uGSFG(V.Local.iCurPos)!Suffix)
+	V.uGlobal.uGSFG(v.Local.iPos)!FGStyle.Set(4)
+	V.uGlobal.uGSFG(v.Local.iPos)!LineType.Set(2)
+	V.uGlobal.uGSFG(v.Local.iPos)!Position.Set(V.Local.iPos)
+	V.uGlobal.uGSFG(v.Local.iPos)!Seq.Set(V.Screen.F_BOM_WO!txtSeq.Text)
+	V.uGlobal.uGSFG(v.Local.iPos)!JobSeq.Set(V.uGlobal.uGSFG(v.Local.iPos)!Seq.Long)
+	V.uGlobal.uGSFG(v.Local.iPos)!bNewSeq.Set(True)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.uGlobal.uGSFG(V.Local.iCurPos)!Suffix,V.uGlobal.uGSFG!Seq,V.Screen.F_BOM_WO!txtSeq.Text,V.uGlobal.uGSFG!bDelete,False,V.Local.sRet)
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sRet.UBound,1)
+		V.Local.iPos.Set(V.Local.sRet(v.Local.iC))
+		F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!Position,<>,V.uGlobal.uGSFG(V.Local.iCurPos)!Position)
+			F.Intrinsic.UI.Msgbox("A Sequence with this number already exists.",V.Screen.F_BOM_WO.Caption)
+			F.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iC)
+	V.Local.iPos.Set(V.Screen.F_BOM_WO!txtSuffix.MetaData1)
+F.Intrinsic.Control.EndIf
+
+V.uGlobal.uGSFG(v.Local.iPos)!Part.Set(V.Screen.F_BOM_WO!txtSeqPart.Text)
+V.uGlobal.uGSFG(v.Local.iPos)!OpCode.Set(V.Screen.F_BOM_WO!txtSeqPart.MetaData1)
+V.uGlobal.uGSFG(v.Local.iPos)!Description.Set(V.Screen.F_BOM_WO!txtSeqDesc.Text)
+V.uGlobal.uGSFG(v.Local.iPos)!Type.Set(V.Screen.F_BOM_WO!dlstType.Text)
+V.uGlobal.uGSFG(v.Local.iPos)!UM.Set(V.Screen.F_BOM_WO!dlstUM.Text)
+'V.uGlobal.uGSFG(v.Local.iPos)!Setup.Set(V.Screen.F_BOM_WO!txtSetup.Text)
+V.uGlobal.uGSFG(v.Local.iPos)!Runtime.Set(V.Screen.F_BOM_WO!txtRuntime.Text)
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO!chkClosed.Value,=,1)
+	V.uGlobal.uGSFG(v.local.iPos)!Closed.Set(True)
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!Date_Completed.trim,=,"",OR,V.uGlobal.uGSFG(v.Local.iPos)!Date_Completed,=,"000000")
+		V.uGlobal.uGSFG(v.Local.iPos)!Date_Completed.Set(V.Local.sDate)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Else
+	'------------------------------------Changed to False so that if the check box was not checked this would update correctly--------SKT------02/11/2015-----------------------------------------------------
+	V.uGlobal.uGSFG(v.local.iPos)!Closed.Set(False)
+	V.uGlobal.uGSFG(v.Local.iPos)!Date_Completed.Set("000000")
+F.Intrinsic.Control.EndIf
+V.uGlobal.uGSFG(v.Local.iPos)!bDirty.Set(True)
+
+F.Intrinsic.Control.CallSub(Clear_seq_fields)
+
+F.Intrinsic.Control.If(V.Local.bNew,=,True)
+	F.Intrinsic.UI.ChangeWaitStatus("Loading data to grid ...")
+	F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uGSFG!Line,False,V.uGlobal.uGSFG!LineType,False,V.uGlobal.uGSFG!JobSeq,False)
+	F.Intrinsic.Control.CallSub(Gsfgloadfromudt)
+F.Intrinsic.Control.Else
+	Gui.F_BOM_WO.gsfgWO.TextMatrix(4,V.Screen.F_BOM_WO!txtSuffix.MetaData0,V.uGlobal.uGSFG(v.Local.iPos)!Part)
+	Gui.F_BOM_WO.gsfgWO.TextMatrix(5,V.Screen.F_BOM_WO!txtSuffix.MetaData0,V.uGlobal.uGSFG(v.Local.iPos)!Description)
+	Gui.F_BOM_WO.gsfgWO.TextMatrix(6,V.Screen.F_BOM_WO!txtSuffix.MetaData0,V.uGlobal.uGSFG(v.Local.iPos)!Type)
+	Gui.F_BOM_WO.gsfgWO.TextMatrix(7,V.Screen.F_BOM_WO!txtSuffix.MetaData0,V.uGlobal.uGSFG(v.Local.iPos)!UM)
+	Gui.F_BOM_WO.gsfgWO.TextMatrix(8,V.Screen.F_BOM_WO!txtSuffix.MetaData0,V.uGlobal.uGSFG(v.Local.iPos)!Closed)
+	Gui.F_BOM_WO.gsfgWO.TextMatrix(10,V.Screen.F_BOM_WO!txtSuffix.MetaData0,V.uGlobal.uGSFG(v.Local.iPos)!Runtime)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Add_Seq_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Add_Seq.End
+
+program.sub.cmdseqpart_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdseqpart_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sCol.Declare(String)
+V.Local.sColW.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.iDesc.Declare(Long)
+V.Local.iRet.Declare(Long)
+
+V.Local.iDesc.Set(1)
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO!dlstType.Text,=,"")
+	F.Intrinsic.UI.Msgbox("Please select a Sequence type.")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!dlstType.Text,=,"C")
+	F.Intrinsic.UI.Msgbox("No browser options for Comment Sequences.")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!dlstType.Text,=,"L")
+'	F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+'	f.Intrinsic.UI.Browser(400,"",V.Local.sRet)
+	V.Local.sQuery.Set("SELECT MACHINE, WC_NAME FROM WORKCENTERS UNION SELECT WORK_GROUP AS MACHINE, DESCR AS WC_NAME FROM WORKGROUP_HEAD ORDER BY MACHINE ASC, WC_NAME ASC")
+	F.Intrinsic.String.Split("Name*!*Description","*!*",V.Local.sCol)
+	F.Intrinsic.String.Split("2000*!*4700","*!*",V.Local.sColW)
+	F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+	F.Intrinsic.UI.Browser("Workcenter","conx",V.Local.sQuery,V.Local.sCol,V.Local.sColW,4000,9000,V.Local.sRet)
+F.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!dlstType.Text,=,"M")
+	V.Local.sQuery.Set("select Part, Location, Description, Product_Line,Qty_Onhand, UM_Inventory  from INVENTORY_MSTR order by part asc, location asc")
+	F.Intrinsic.String.Split("Part*!*Location*!*Description*!*Product Line*!*Qty On Hand*!*UM","*!*",V.Local.sCol)
+	F.Intrinsic.String.Split("2000*!*600*!*3500*!*1200*!*1200*!*600","*!*",V.Local.sColW)
+	F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+	F.Intrinsic.UI.Browser("Part","conx",V.Local.sQuery,V.Local.sCol,V.Local.sColW,10100,9000,V.Local.sRet)
+'	F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+'	F.Intrinsic.UI.Browser(105,"",V.Local.sRet)
+	V.Local.iDesc.Set(2)
+F.Intrinsic.Control.ElseIf(V.Screen.F_BOM_WO!dlstType.Text,=,"O")
+	V.Local.sQuery.Set("SELECT MACHINE, DESCRIPTION, OPERATION FROM OP_CODES WHERE LMO='O' ORDER BY MACHINE ASC")
+	F.Intrinsic.String.Split("Outside*!*Description*!*","*!*",V.Local.sCol)
+	F.Intrinsic.String.Split("2000*!*4700*!*0","*!*",V.Local.sColW)
+	F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+	F.Intrinsic.UI.Browser("Op Code","conx",V.Local.sQuery,V.Local.sCol,V.Local.sColW,4000,9000,V.Local.sRet)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.F_BOM_WO.txtSeqPart.Text(V.Local.sRet(0))
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!dlstType.Text,=,"O")
+		Gui.F_BOM_WO.txtSeqPart.SetMetaData(V.Local.sRet(0),V.Local.sRet(2))
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO.txtSeqPart.SetMetaData(V.Local.sRet(0),"")
+	F.Intrinsic.Control.EndIf
+	'F.Intrinsic.Control.If(V.Screen.F_BOM_WO!dlstType.Text,<>,"L")
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtSeqDesc.Text,<>,"")
+		F.Intrinsic.Control.If(V.Screen.F_BOM_WO!txtSeqDesc.Text,<>,V.Local.sRet(v.Local.iDesc))
+			F.Intrinsic.UI.Msgbox("Would you like to replace the description?",,4,V.Local.iRet)
+			F.Intrinsic.Control.If(V.Local.iRet,=,6)
+				Gui.F_BOM_WO.txtSeqDesc.Text(V.Local.sRet(v.Local.iDesc))
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO.txtSeqDesc.Text(V.Local.sRet(v.Local.iDesc))
+	F.Intrinsic.Control.EndIf
+	'F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.If(V.Screen.F_BOM_WO!dlstType.Text,=,"M")
+		Gui.F_BOM_WO.dlstUM.Text(V.Local.sRet(5).Trim)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdseqpart_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,12101)
+		Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO.dlstUM.ListIndex(-1)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdseqpart_click.end
+
+program.sub.dlsttype_click.start
+F.Intrinsic.Control.SetErrorHandler("dlsttype_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+Gui.F_BOM_WO.txtSeqPart.Text("")
+Gui.F_BOM_WO.txtSeqDesc.Text("")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("dlsttype_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.dlsttype_click.end
+
+program.sub.f_bom_wo_resize.start
+V.Local.x.Declare(Long)
+V.Local.y.Declare(Long)
+V.Local.Gx.Declare(Long)
+
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO.Width,<,12275)
+	Gui.F_BOM_WO..Size(12275,V.Screen.F_BOM_WO.Height)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.If(V.Screen.F_BOM_WO.Height,<,5000)
+	Gui.F_BOM_WO..Size(V.Screen.F_BOM_WO.Width,5000)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Math.Sub(V.Screen.F_BOM_WO.Width,575,V.Local.x)
+F.Intrinsic.Math.Sub(V.Screen.F_BOM_WO.Height,3325,V.Local.y)
+Gui.F_BOM_WO.gsfgWO.Size(V.Local.x,V.Local.y)
+
+F.Intrinsic.Math.Add(V.Screen.F_BOM_WO!gsfgWO.Height,1900,V.Local.y)
+Gui.F_BOM_WO.frmButtons.Position(V.Screen.F_BOM_WO!frmButtons.Left,V.Local.y)
+Gui.F_BOM_WO.frmFilters.Position(V.Screen.F_BOM_WO!frmFilters.Left,V.Local.y)
+'
+'F.Intrinsic.Control.If(V.Screen.F_BOM_WO!gsfgWO.Width,<=,11700)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(4,2000)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(5,3000)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(8,1000)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(9,1000)
+'F.Intrinsic.Control.Else
+'	F.Intrinsic.Math.Sub(V.Screen.F_BOM_WO!gsfgWO.Width,4700,V.Local.Gx)
+'	F.Intrinsic.Math.Mult(V.Local.Gx,0.2857142,V.Local.x)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(4,V.Local.x)
+'	F.Intrinsic.Math.Mult(V.Local.Gx,0.4285714,V.Local.x)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(5,V.Local.x)
+'	F.Intrinsic.Math.Mult(V.Local.Gx,0.1428571,V.Local.x)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(8,V.Local.x)
+'	F.Intrinsic.Math.Mult(V.Local.Gx,0.1428571,V.Local.x)
+'	Gui.F_BOM_WO.gsfgWO.ColWidth(9,V.Local.x)
+'F.Intrinsic.Control.EndIf
+
+program.sub.f_bom_wo_resize.end
+
+Program.Sub.Check_Tables.Start
+F.Intrinsic.Control.SetErrorHandler("Check_Tables_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.sText.Declare(String)
+V.Local.sFile.Declare(String)
+V.Static.bTableExists.Declare(Boolean)
+V.Static.bChecked.Declare(Boolean)
+
+F.Intrinsic.Control.If(V.Static.bChecked,=,False)
+	V.Static.bTableExists.Set(True)
+	F.ODBC.Connection!conx.TableExists("X_LOCK_FILE",V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,False)
+		F.Intrinsic.String.Concat(V.Caller.PluginsDir,"\GAB\GAS\ATG_X_LOCK_FILE.sql",V.Local.sFile)
+		F.Intrinsic.File.Exists(V.Local.sFile,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,=,False)
+			F.Intrinsic.UI.Msgbox("Unable to save changes or reschedule job.  The table X_LOCK_FILE is required.",V.Screen.F_BOM_WO.Caption)
+			V.Static.bTableExists.Set(False)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.File.File2String(V.Local.sFile,V.Local.sText)
+			F.ODBC.Connection!conx.Execute(V.Local.sText)
+			F.ODBC.Connection!conx.TableExists("X_LOCK_FILE",V.Local.bExists)
+			F.Intrinsic.Control.If(V.Local.bExists,=,False)
+				F.Intrinsic.UI.Msgbox("Unable to save changes or reschedule job.  The table X_LOCK_FILE is required.  Attempt to create table failed.",V.Screen.F_BOM_WO.Caption)
+				V.Static.bTableExists.Set(False)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	V.Static.bChecked.Set(True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.AddRV("bTableExists",V.Static.bTableExists)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Check_Tables_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Check_Tables.End
+
+Program.Sub.Save.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sLocked.Declare(String)
+V.Local.sWorkDone.Declare(String)
+V.Local.sMsg.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.sFailedLock.Declare(String)
+V.Local.sJob.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.bRescheduled.Declare(Boolean,False)
+V.Local.sFailedDelete.Declare(String)
+V.Local.sNotDeleted.Declare(String)
+V.Local.sParams.Declare(String)
+V.Local.dDate1.Declare(Date)
+V.Local.dDate2.Declare(Date)
+V.Local.sDate1.Declare(String)
+V.Local.sDate2.Declare(String)
+V.Local.sCRet.Declare(String)
+V.Local.iPosD.Declare(Long)
+V.Local.sSuffixes.Declare(String)
+
+V.Local.sSuffixes.Set("000")
+
+F.Intrinsic.Control.CallSub(Check_tables)
+F.Intrinsic.Control.If(V.args.bTableExists,=,False)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+'12/9/15 bug fix SAS
+F.Intrinsic.Control.Label("Check")
+'checks to make sure the work order is not already open
+f.Intrinsic.String.Build("SELECT DISTINCT USER_ID, TRMNL FROM X_LOCK_FILE WHERE LEFT(REC_KEY,6) = '{0}' AND LOCK_TYPE = 'WO' ",V.Screen.F_BOM_WO!txtWO.Text,V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstCheck",V.Local.sQuery)
+'if there is something in the table with the same work order display the user and terminal
+F.Intrinsic.Control.If(V.ODBC.conx!rstCheck.EOF,=,False)
+	V.Local.sQuery.Set("")
+	F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstCheck.EOF,=,True)
+		F.Intrinsic.String.Build("{3}User: {0} Terminal: {1}{2}",V.ODBC.conx!rstCheck.FieldValTrim!USER_ID,V.ODBC.conx!rstCheck.FieldValTrim!TRMNL,V.Ambient.NewLine,V.Local.sQuery,V.Local.sQuery)
+		F.ODBC.conx!rstCheck.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conx!rstCheck.Close
+	F.Intrinsic.UI.Msgbox(V.Local.sQuery,"Program is already in use",5,V.Local.iC)
+	'responds to messagebox
+	F.Intrinsic.Control.If(V.Local.iC,=,4)
+		F.Intrinsic.Control.GoTo("Check")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+V.Local.iC.Set(0)
+'
+'
+'
+'Set sRet and ask how the User would like to Save.
+F.Intrinsic.Control.If(V.Args.bAll,=,True)
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!LineType,1,1,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,=,"")
+		F.Intrinsic.UI.Msgbox("No jobs to reschedule")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.String.Concat("Please note that no changes can be committed to a job if any of the following conditions apply: ",V.Ambient.NewLine,V.Ambient.NewLine,V.Local.sMsg)
+	F.Intrinsic.String.Concat(V.Local.sMsg,"- The job is currently locked and being edited by another user",V.Ambient.NewLine,"- An error ocurred when trying to lock the job in order to apply changes",V.Ambient.NewLine,"- A sequence that has been marked for deletion has had time applied to it. (Note:  If this is the case, it is recommended that you reload job information to the screen and adjust your changes to this job)",V.Local.sMsg)
+	F.Intrinsic.String.Concat(V.Local.sMsg,V.Ambient.NewLine,V.Ambient.NewLine,"If any of these conditions are found for a job, would you like to continue applying changes made to other jobs and reschedule the parent job anyways?",V.Local.sMsg)
+	F.Intrinsic.String.Concat(V.Local.sMsg,"  The parent job will only be rescheduled if at least some changes have been comitted.",V.Local.sMsg)
+	F.Intrinsic.UI.MsgboxExt(V.Screen.F_BOM_WO.Caption,V.Local.sMsg,"24*!*Reschedule anyways*!*Do not Reschedule",6500,4200)
+	F.Intrinsic.Control.If(V.Ambient.altboxclick,=,-1)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.ElseIf(V.Ambient.altboxclick,=,3)
+		V.Global.bContinueSave.Set(True)
+	F.Intrinsic.Control.Else
+		V.Global.bContinueSave.Set(False)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Else
+	'Line that reschedule was on, should be just that suffix
+	V.Local.sRet.Set(V.Args.iPos)
+	V.Global.bContinueSave.Set(False)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.UI.InvokeWaitDialog("Getting Job Detail Records ...",V.Screen.F_BOM_WO.Caption)
+
+
+
+
+
+'Find all jobs with changes applied (build sDirtyJobs) and check locks
+F.Intrinsic.Control.CallSub(Save_check_locks,"sRet",V.Local.sRet)
+V.Local.sLocked.Set(V.Args.sLocked)
+F.Intrinsic.Control.If(V.Local.sLocked,<>,"")
+	F.Intrinsic.Control.If(V.Global.bContinueSave,=,False)
+		F.Intrinsic.String.Concat("No changes were made and the parent job was not rescheduled due to the following jobs being locked:",V.Local.sLocked,V.Local.sMsg)
+		F.Intrinsic.UI.MsgBoxExt(V.Screen.F_BOM_WO.Caption,V.Local.sMsg,"1",6500,4200)
+		F.Intrinsic.UI.CloseWaitDialog
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.ElseIf(V.Global.sDirtyJobs.UBound,=,-1)
+		F.Intrinsic.String.Concat("No changes were made and the parent job was not rescheduled due to the following jobs being locked:",V.Local.sLocked,V.Local.sMsg)
+		F.Intrinsic.UI.MsgBoxExt(V.Screen.F_BOM_WO.Caption,V.Local.sMsg,"1",6500,4200)
+		F.Intrinsic.UI.CloseWaitDialog
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.ElseIf(V.Global.sDirtyJobs.UBound,=,-1)
+	F.Intrinsic.UI.Msgbox("No changes have been made.  The parent job was not be rescheduled.")
+	F.Intrinsic.UI.CloseWaitDialog
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+'Create locks for sDirtyJobs - Rebuild sDirtyJobs with only successfully locked jobs
+F.Intrinsic.Control.CallSub(Save_create_locks)
+V.Local.sFailedLock.Set(V.Args.sFailedLock)
+F.Intrinsic.Control.If(V.Local.sFailedLock,<>,"")
+	F.Intrinsic.Control.If(V.Global.bContinueSave,=,False)
+		F.Intrinsic.String.Concat("No changes were made and the parent job was not rescheduled because the following jobs could not be locked:",V.Local.sFailedLock,V.Local.sMsg)
+		F.Intrinsic.UI.MsgBoxExt(V.Screen.F_BOM_WO.Caption,V.Local.sMsg,"1",6500,4200)
+		F.Intrinsic.UI.CloseWaitDialog
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Global.sDirtyJobs.UBound,>,-1)
+	'Get most recent JobOps
+	V.uGlobal.uJobO.Redim(-1,-1)
+	F.Intrinsic.String.Concat("SELECT  RTRIM(JOB) AS JOB,RTRIM(SUFFIX) as SUFFIX,RTRIM(PART) AS PART, SEQ, UM, DESCRIPTION, HOURS_ACTUAL,SETUP, UNITS,LMO,OPERATION, FLAG_CLOSED, DATE_COMPLETED FROM JOB_OPERATIONS WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' ORDER BY JOB ASC, SUFFIX ASC, SEQ ASC",V.Local.sQuery)
+	'F.Intrinsic.String.Concat("SELECT  RTRIM(JOB) AS JOB,RTRIM(SUFFIX) as SUFFIX,RTRIM(PART) AS PART,SEQ,UM,DESCRIPTION,SETUP,UNITS,LMO FROM JOB_OPERATIONS WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='",V.local.sSuffix,"' ORDER BY JOB ASC, SUFFIX ASC, SEQ ASC",V.Local.sQuery)
+	F.ODBC.Connection!conx.OpenRecordsetRO("rstLoad",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoad","v.uGlobal.uJobO",False)
+	F.ODBC.conx!rstLoad.Close
+	F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uJobO!Seq,False)
+
+	'Check for work done on any Sequences
+	V.uGlobal.uJobD.Redim(-1,-1)
+	F.Intrinsic.String.Concat("SELECT  RTRIM(JOB) AS JOB,RTRIM(SUFFIX) as SUFFIX,SEQ FROM JOB_DETAIL WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"'  ORDER BY JOB ASC, SUFFIX ASC, SEQ ASC",V.Local.sQuery)
+	'F.Intrinsic.String.Concat("SELECT  RTRIM(JOB) AS JOB,RTRIM(SUFFIX) as SUFFIX,SEQ FROM JOB_DETAIL WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='",V.local.sSuffix,"' ORDER BY JOB ASC, SUFFIX ASC, SEQ ASC",V.Local.sQuery)
+	F.ODBC.Connection!conx.OpenRecordsetRO("rstLoad",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoad","v.uGlobal.uJobD",False)
+	F.ODBC.conx!rstLoad.Close
+
+	F.Intrinsic.Control.CallSub(Save_check_deleted_seqs)
+	V.Local.sNotDeleted.Set(V.Args.sNotDeleted)
+
+	F.Intrinsic.Control.If(V.Global.sDirtyJobs.UBound,>,-1)
+		F.Intrinsic.Control.CallSub(Save_commit_changes)
+	F.Intrinsic.Control.EndIf
+
+	'delete all locks
+	F.Intrinsic.Control.CallSub(Save_delete_locks)
+	V.Local.sFailedDelete.Set(V.Args.sFailedDelete)
+
+	F.Intrinsic.Control.If(V.Global.sDirtyJobs.UBound,>,-1)
+		'Download scheduling files --Not currently doing this
+		'Make sure all sequences have a start/end date
+		F.Intrinsic.Control.CallSub(Save_seq_dates,"sJob",V.Screen.F_BOM_WO!txtWO.Text)
+		'reschedule PARENT job
+		F.Intrinsic.String.Concat("Select Job, Suffix,DATE_START, DATE_DUE from V_JOB_HEADER WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='000'",V.Local.sQuery)
+		F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,<>,True)
+			V.Local.dDate1.set(V.ODBC.conx!rst.FieldValPervasiveDate!DATE_START)
+			V.Local.dDate2.set(V.ODBC.conx!rst.FieldValPervasiveDate!DATE_DUE)
+			F.ODBC.conx!rst.close
+
+			F.Intrinsic.String.Format(V.Local.dDate1,"MMDDYY",V.Local.sDate1)
+			F.Intrinsic.String.Format(V.Local.dDate2,"MMDDYY",V.Local.sDate2)
+
+			'get list of all sequences that have a dirty job
+			F.Intrinsic.String.Concat("SELECT DISTINCT Suffix FROM V_JOB_HEADER WHERE JOB = '",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX <> '000'",V.Local.sQuery)
+			F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstSfx",V.Local.sQuery)
+			F.Intrinsic.Control.If(V.ODBC.conx!rstSfx.EOF,<>,True)
+				F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstSfx.EOF,=,True)
+					F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.ODBC.conx!rstSfx.FieldValTrim!Suffix,V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDirty,True,V.uGlobal.uGSFG!bDelete,False,V.Local.sCRet)
+					F.Intrinsic.Control.If(V.Local.sCRet,<>,"")
+					'found at least one job with this suffix that needs scheduling
+						F.Intrinsic.String.Concat(V.Local.sSuffixes,"*!*",V.ODBC.conx!rstSfx.FieldValTrim!Suffix,V.Local.sSuffixes)
+						F.Intrinsic.String.Concat(V.Local.sDate1,"!*!",V.Local.sDate2,"!*!",V.Screen.F_BOM_WO!txtWO.Text,"!*!",V.ODBC.conx!rstSfx.FieldValTrim!Suffix,"!*!!*!B",V.Local.sParams)
+						F.Global.General.CallWrapperSync("500030",V.Local.sParams)
+					F.Intrinsic.Control.EndIf
+					F.ODBC.conx!rstSfx.MoveNext
+				F.Intrinsic.Control.Loop
+			F.Intrinsic.Control.EndIf
+			F.ODBC.conx!rstSfx.Close
+
+			'schedule the parent work order last to ensure all changes are picked up by the APS
+			F.Intrinsic.String.Concat(V.Local.sDate1,"!*!",V.Local.sDate2,"!*!",V.Screen.F_BOM_WO!txtWO.Text,"!*!","000","!*!!*!B",V.Local.sParams)
+			F.Global.General.CallWrapperSync("500030",V.Local.sParams)
+		F.Intrinsic.Control.Else
+			F.ODBC.conx!rst.close
+			F.Intrinsic.UI.Msgbox("Due date could not be found for parent job.  Changes have been comitted but the job has not been rescheduled.")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+'Generate results message
+F.Intrinsic.Control.If(V.Global.sDirtyJobs.UBound,>,-1)
+	F.Intrinsic.Control.CallSub(Pop_ugsfg,"iLoad",1)
+	F.Intrinsic.String.RPad(V.Screen.F_BOM_WO!txtWO.Text," ",6,V.Local.sJob)
+	V.Local.sMsg.Set("The parent job has been rescheduled and the following jobs have had changes committed:")
+	F.Intrinsic.String.Split(V.Local.sSuffixes,"*!*",V.Local.sSuffixes)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sSuffixes.UBound,1)
+		'V.Local.iPos.Set(V.Global.sDirtyJobs(v.Local.iC))
+		F.Intrinsic.String.Concat(V.Local.sMsg,V.Ambient.NewLine,V.Local.sJob,"-",V.Local.sSuffixes(V.Local.iC),V.Local.sMsg)
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.Else
+	V.Local.sMsg.Set("The parent job was not scheduled because no jobs were eligible to have changes committed.")
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.If(V.Local.sLocked,<>,"")
+	F.Intrinsic.String.Concat(V.Local.sMsg,V.Ambient.NewLine,V.Ambient.NewLine,"The following jobs were locked and no changes could be comitted:",V.Local.sLocked,V.Local.sMsg)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.If(V.Local.sFailedLock,<>,"")
+	F.Intrinsic.String.Concat(V.Local.sMsg,V.Ambient.NewLine,V.Ambient.NewLine,"The following jobs were could not be locked and no changes could be comitted:",V.Local.sFailedLock,V.Local.sMsg)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.If(V.Local.sNotDeleted,<>,"")
+	F.Intrinsic.String.Concat(V.Local.sMsg,V.Ambient.NewLine,V.Ambient.NewLine,"The following sequences could not be deleted because time has been applied:",V.Local.sNotDeleted,V.Local.sMsg)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.If(V.Local.sFailedDelete,<>,"")
+	F.Intrinsic.String.Concat(V.Local.sMsg,V.Ambient.NewLine,V.Ambient.NewLine,"The following jobs could not be un-locked:",V.Local.sFailedDelete,V.Local.sMsg)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Cmdreloadbom_click)
+
+F.Intrinsic.UI.CloseWaitDialog
+F.Intrinsic.UI.MsgBoxExt(V.Screen.F_BOM_WO.Caption,V.Local.sMsg,"1",6500,6000)
+V.uGlobal.uDelete.Redim(-1,-1)
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	F.Intrinsic.UI.CloseWaitDialog
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Save.End
+
+Program.Sub.Save_Check_Deleted_Seqs.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Check_Deleted_Seqs_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sCRet.Declare(String)
+V.Local.sRetS.Declare(String)
+V.Local.sSuffix.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sNotDeleted.Declare(String)
+V.Local.iX.Declare(Long)
+V.Local.bNewSuffix.Declare(Boolean)
+V.Local.sJob.Declare(String)
+V.Local.iUB.Declare(Long,-1)
+V.Local.iPosG.Declare(Long)
+V.Local.sTemp.Declare(String)
+
+'
+'
+
+'Will need to rebuild sDirtyJobs with only jobs that have no time applied to deleted sequences
+V.Global.sLockedPos.Redim(0,V.Global.sDirtyJobs.UBound)
+F.Intrinsic.Control.For(V.Local.iC,0,V.Global.sDirtyJobs.UBound,1)
+	V.Global.sLockedPos(v.Local.iC).Set(V.Global.sDirtyJobs(v.Local.iC))
+F.Intrinsic.Control.Next(V.Local.iC)
+
+V.Local.iC.Set(0)
+
+
+'V.uGlobal.uDelete.Redim(-1,-1)
+'Get all unique Delete sequences
+F.Intrinsic.Variable.UDTCopy(V.uGlobal.uGSFG,V.uGlobal.uDelete,False)
+V.uGlobal.uDelete.RedimPreserve(0,V.uGlobal.uDelete.UBound)
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uDelete)
+F.Intrinsic.Variable.UDTMultiUnFlag(V.uGlobal.uDelete!LineType,2,V.uGlobal.uDelete!bDelete,True,V.uGlobal.uDelete!bNewSeq,False)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uDelete)
+F.Intrinsic.Variable.udtMultiFlagDuplicates(V.uGlobal.uDelete!Suffix,V.uGlobal.uDelete!Seq)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uDelete)
+
+
+V.Global.sDirtyJobs.Redim(-1,-1)
+F.Intrinsic.String.RPad(V.Screen.F_BOM_WO!txtWO.Text," ",6,V.Local.sJob)
+F.Intrinsic.Control.For(V.Local.iX,0,V.Global.sLockedPos.UBound,1)
+	V.Local.iPos.Set(V.Global.sLockedPos(v.Local.iX))
+	V.Local.sSuffix.Set(V.uGlobal.uGSFG(v.Local.iPos)!Suffix)
+	V.Local.bNewSuffix.Set(True)
+
+	'Add sequences to delete if they've been added in outside programs since? -not currently in this version
+
+	'Loops through all Deleted Sequences for this Suffix and check for detail records
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uDelete!Suffix,V.Local.sSuffix,1,V.Local.sRetS)
+	F.Intrinsic.Control.If(V.Local.sRetS,<>,"")
+		F.Intrinsic.String.Split(V.Local.sRetS,"*!*",V.Local.sRetS)
+		F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sRetS.UBound,1)
+			
+			V.Local.iPosG.Set(V.Local.sRetS(v.Local.iC))
+
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobD!Suffix,V.local.sSuffix,V.uGlobal.uJobD!Seq,V.uGlobal.uDelete(v.Local.iPosG)!Seq,V.Local.sRet)
+			F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+				F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.local.sSuffix,V.uGlobal.uGSFG!Seq,V.uGlobal.uDelete(v.Local.iPosG)!Seq,V.uGlobal.uGSFG!Type,V.uGlobal.uDelete(v.Local.iPosG)!Type,V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDirty,True,V.uGlobal.uGSFG!bDelete,False,V.Local.sCRet)
+				F.Intrinsic.Control.If(V.Local.sCRet,<>,"")
+					'If a non-deleted sequence with the same seq number (and LMOC) is found in uGSFG, remove sequence from uDelete because this sequence number is not really being deleted.
+					F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uDelete!Suffix,V.Local.sSuffix,V.uGlobal.uDelete!Seq,V.uGlobal.uDelete(v.Local.iPosG)!Seq)
+				F.Intrinsic.Control.Else
+					'If no non-deleted sequence is found, add sequence back into uGSFG by setting bDelete=False
+					F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.local.sSuffix,V.uGlobal.uGSFG!Seq,V.uGlobal.uDelete(v.Local.iPosG)!Seq,V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDelete,True,V.uGlobal.uGSFG!bNewSeq,False,V.Local.sCRet)
+					F.Intrinsic.Control.If(V.Local.sCRet,<>,"")
+						F.Intrinsic.String.Split(V.Local.sCRet,"*!*",V.Local.sCRet)
+						V.Local.iPosG.Set(V.Local.sCRet(0))
+						V.uGlobal.uGSFG(v.Local.iPosG)!bDelete.Set(False)
+					F.Intrinsic.Control.Else
+						F.Intrinsic.Debug.SetLA("Unable to add sequence ",V.uGlobal.uDelete(v.Local.iPosG)!Seq," of Suffix ",V.Local.sSuffix," back into uGSFG.")
+					F.Intrinsic.Control.EndIf
+					F.Intrinsic.Control.If(V.Local.bNewSuffix,=,True)
+						F.Intrinsic.String.Concat(V.Local.sNotDeleted,V.Ambient.NewLine,V.Local.sJob,"-",V.Local.sSuffix,V.Local.sNotDeleted)
+						V.Local.bNewSuffix.Set(False)
+					F.Intrinsic.Control.EndIf
+					F.Intrinsic.String.Concat(V.Local.sNotDeleted,V.Ambient.NewLine,V.Ambient.Tab,V.uGlobal.uDelete(v.Local.iC)!Seq,V.Local.sNotDeleted)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iC)
+	F.Intrinsic.Control.EndIf
+
+	'If job finds no details for any of its deleted sequences, it can be added back into sDirtyJobs
+	F.Intrinsic.Control.If(V.Local.bNewSuffix,=,True)
+		F.Intrinsic.Math.Add(V.Local.iUB,1,V.Local.iUB)
+		F.Intrinsic.Control.If(V.Local.iUB,=,0)
+			V.Global.sDirtyJobs.Redim(0,0)
+		F.Intrinsic.Control.Else
+			V.Global.sDirtyJobs.RedimPreserve(0,V.Local.iUB)
+		F.Intrinsic.Control.EndIf
+'sas		V.Global.sDirtyJobs(v.Local.ix).Set(V.Local.iPos) change ix to iub
+		V.Global.sDirtyJobs(v.Local.iUB).Set(V.Local.iPos)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iX)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uDelete)
+
+F.Intrinsic.Variable.AddRV("sNotDeleted",V.Local.sNotDeleted)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Check_Deleted_Seqs_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Save_Check_Deleted_Seqs.End
+
+program.sub.cmdreloadbom_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdreloadbom_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.Intrinsic.Control.If(V.Global.bBusy,=,True)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+V.Global.bBusy.Set(True)
+
+V.Global.sLastJob.Set(V.Screen.F_BOM_WO!txtWO.Text)
+F.Intrinsic.UI.InvokeWaitDialog("Loading ...",V.Screen.F_BOM_WO.Caption)
+F.Intrinsic.Control.CallSub(Pop_all)
+F.Intrinsic.UI.CloseWaitDialog
+
+V.Global.bBusy.Set(False)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdreloadbom_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdreloadbom_click.end
+
+program.sub.cmdreloadjobs_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdreloadjobs_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.Intrinsic.UI.InvokeWaitDialog("Processing",V.Screen.F_BOM_WO.Caption)
+F.Intrinsic.Control.CallSub(Pop_ugsfg,"iLoad",2)
+F.Intrinsic.UI.CloseWaitDialog
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdreloadjobs_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdreloadjobs_click.end
+
+Program.Sub.Save_Check_Locks.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Check_Locks_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sLocked.Declare(String)
+V.Local.sMsg.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.iUB.Declare(Long,-1)
+V.Local.bDirty.Declare(Boolean)
+V.Local.sDRet.Declare(String)
+V.Local.sCRet.Declare(String)
+V.Local.sJob.Declare(String)
+V.Local.sTemp.Declare(String)
+
+
+
+
+
+'sRet is the position
+F.Intrinsic.String.RPad(V.Screen.F_BOM_WO!txtWO.Text," ",6,V.Local.sJob)
+F.Intrinsic.String.Split(V.args.sRet,"*!*",V.Local.sRet)
+V.Global.sDirtyJobs.Redim(-1,-1)
+F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sRet.UBound,1)
+	'Position of the header line
+	V.Local.iPos.Set(V.Local.sRet(v.Local.iC))
+	'Retrieve all sequences for this suffix that have had changes applied and have not been deleted
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.uGlobal.uGSFG(v.Local.iPos)!Suffix,V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDirty,True,V.uGlobal.uGSFG!bDelete,False,V.Local.sCRet)
+	'Retrieve all original sequences (i.e., not new seqs) for this suffix that have been deleted
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.uGlobal.uGSFG(v.Local.iPos)!Suffix,V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDelete,True,V.uGlobal.uGSFG!bNewSeq,False,V.Local.sDRet)
+	V.Local.bDirty.Set(True)
+	F.Intrinsic.Control.If(V.Local.sCRet,=,"")
+		F.Intrinsic.Control.If(V.Local.sDRet,=,"")
+			V.Local.bDirty.Set(False)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Concat(V.Local.sJob,"-",V.uGlobal.uGSFG(v.Local.iPos)!Suffix,V.Local.sTemp)
+	'Add position to sDirtyJobs and check lock
+	F.Intrinsic.Control.If(V.Local.bDirty,=,True)
+		'Lock check -- For now iRet=0
+		F.Global.General.ReadSoftLock("WO",V.Local.sTemp,V.Local.iRet)
+		F.Intrinsic.Control.If(V.Local.iRet,=,0)
+			F.Intrinsic.Math.Add(V.Local.iUB,1,V.Local.iUB)
+'JLH			F.Intrinsic.Math.Add(V.Local.iPos,1,V.Local.iPos)
+			F.Intrinsic.Control.If(V.Local.iUB,=,0)
+				V.Global.sDirtyJobs.Redim(0,0)
+			F.Intrinsic.Control.Else
+				V.Global.sDirtyJobs.RedimPreserve(0,V.Local.iUB)
+			F.Intrinsic.Control.EndIf
+			V.Global.sDirtyJobs(v.Local.iUB).Set(V.Local.iPos)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sLocked,V.Ambient.NewLine,V.Local.sTemp,V.Local.sLocked)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Variable.AddRV("sLocked",V.Local.sLocked)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Check_Locks_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Save_Check_Locks.End
+
+Program.Sub.Save_Create_Locks.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Create_Locks_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sFailedLock.Declare(String)
+V.Local.sMsg.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.iUB.Declare(Long,-1)
+V.Local.bDirty.Declare(Boolean)
+V.Local.sDRet.Declare(String)
+V.Local.sCRet.Declare(String)
+V.Local.sJob.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sNewLocks.Declare(String)
+V.Local.sQuery.Declare(String)
+
+'
+
+
+'Brings in the dirty jobs and saves them in new locks
+V.Local.sNewLocks.Redim(0,V.Global.sDirtyJobs.UBound)
+F.Intrinsic.Control.For(V.Local.iC,0,V.Global.sDirtyJobs.UBound,1)
+	V.Local.sNewLocks(v.Local.iC).Set(V.Global.sDirtyJobs(v.Local.iC))
+F.Intrinsic.Control.Next(V.Local.iC)
+
+V.Global.sDirtyJobs.Redim(-1,-1)
+F.Intrinsic.String.RPad(V.Screen.F_BOM_WO!txtWO.Text," ",6,V.Local.sJob)
+
+
+'Brings in all the suffixes for that job
+F.Intrinsic.String.Concat("SELECT DISTINCT Suffix FROM V_JOB_HEADER WHERE JOB = '",V.Screen.F_BOM_WO!txtWO.Text,"'",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstSfx",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conx!rstSfx.EOF,<>,True)
+	F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstSfx.EOF,=,True)
+
+		F.Intrinsic.String.Concat(V.Local.sJob,"-",V.ODBC.conx!rstSfx.FieldValTrim!Suffix,V.Local.sTemp)
+		'Create lock - for now set iRet=1
+		F.Global.General.CreateSoftLock("WO",V.Local.sTemp,V.Local.iRet)
+		F.Intrinsic.Control.If(V.Local.iRet,=,1)
+			F.Intrinsic.Math.Add(V.Local.iUB,1,V.Local.iUB)
+			F.Intrinsic.Control.If(V.Local.iUB,=,0)
+				V.Global.sDirtyJobs.Redim(0,0)
+			F.Intrinsic.Control.Else
+				V.Global.sDirtyJobs.RedimPreserve(0,V.Local.iUB)
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.ODBC.conx!rstSfx.FieldValTrim!Suffix,V.uGlobal.uGSFG!LineType,1,V.Local.iPos)
+			V.Global.sDirtyJobs(v.Local.iUB).Set(V.Local.iPos)
+			'V.Global.sDirtyJobs(v.Local.iUB).Set(V.Local.sNewLocks)
+'			F.Intrinsic.Math.Add(V.Local.sNewLocks,1,V.Local.sNewLocks)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Concat(V.Local.sFailedLock,V.Ambient.NewLine,V.Local.sTemp,V.Local.sFailedLock)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rstSfx.MoveNext
+	F.Intrinsic.Control.Loop
+F.Intrinsic.Control.EndIf
+F.ODBC.conX!rstSfx.Close
+
+
+F.Intrinsic.Variable.AddRV("sFailedLock",V.Local.sFailedLock)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Create_Locks_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Save_Create_Locks.End
+
+Program.Sub.Save_Delete_Locks.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Delete_Locks_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sFailedDelete.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sJob.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.sTemp.Declare(String)
+
+F.Intrinsic.String.RPad(V.Screen.F_BOM_WO!txtWO.Text," ",6,V.Local.sJob)
+'F.Intrinsic.Control.For(V.Local.iC,0,V.Global.sLockedPos.UBound,1)
+'	V.Local.iPos.Set(V.Global.sLockedPos(v.Local.iC))
+'	F.Intrinsic.String.Concat(V.Local.sJob,"-",V.uGlobal.uGSFG(v.Local.iPos)!Suffix,V.Local.sTemp)
+'	'Delete lock-for now set iRet=1
+''	V.Local.iRet.Set(1)
+'
+'	F.Global.General.DestroySoftLock("WO",V.Local.sTemp,V.Local.iRet)
+'	F.Intrinsic.Control.If(V.Local.iRet,=,-1)
+'		F.Intrinsic.String.Concat(V.Local.sFailedDelete,V.Ambient.NewLine,V.Local.sTemp,V.Local.sFailedDelete)
+'	F.Intrinsic.Control.EndIf
+'F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.String.Concat("SELECT DISTINCT Suffix FROM V_JOB_HEADER WHERE JOB = '",V.Screen.F_BOM_WO!txtWO.Text,"'",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstSfx",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conx!rstSfx.EOF,<>,True)
+	F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstSfx.EOF,=,True)
+		F.Intrinsic.String.Concat(V.Local.sJob,"-",V.ODBC.conx!rstSfx.FieldValTrim!Suffix,V.Local.sTemp)
+		F.Global.General.DestroySoftLock("WO",V.Local.sTemp,V.Local.iRet)
+		F.Intrinsic.Control.If(V.Local.iRet,=,-1)
+			F.Intrinsic.String.Concat(V.Local.sFailedDelete,V.Ambient.NewLine,V.Local.sTemp,V.Local.sFailedDelete)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rstSfx.MoveNext
+	F.Intrinsic.Control.Loop
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rstSfx.Close
+
+F.Intrinsic.Variable.AddRV("sFailedDelete",V.Local.sFailedDelete)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Delete_Locks_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Save_Delete_Locks.End
+
+Program.Sub.Save_Commit_Changes.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Commit_Changes_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sLRet.Declare(String)
+V.Local.sDRet.Declare(String)
+V.Local.sCRet.Declare(String)
+V.Local.sSuffix.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sWO.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iPos.Declare(Long)
+V.Local.sFlags.Declare(String)
+V.Local.sNotDeleted.Declare(String)
+V.Local.iJ.Declare(Long)
+'V.uGlobal.uDelete.Declare(Gsfg)
+V.Local.iTemp.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.iX.Declare(Long)
+V.Local.iPosD.Declare(Long)
+
+
+
+
+
+F.Intrinsic.Control.For(V.Local.iX,0,V.Global.sDirtyJobs.UBound,1)
+	V.Local.iPos.Set(V.Global.sDirtyJobs(v.Local.iX))
+	V.Local.sSuffix.Set(V.uGlobal.uGSFG(v.Local.iPos)!Suffix)
+
+	'Delete all sequences flagged for delete (uDelete) for current suffix in sDirtyJobs
+	F.Intrinsic.Variable.UDTSeek(V.uGlobal.uDelete!Suffix,V.Local.sSuffix,1,V.Local.sRet)
+	F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+		F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+		F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sRet.UBound,1)
+			
+			V.Local.iPosD.Set(V.Local.sRet(v.Local.iC))
+			'Delete comments
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobO!Suffix,V.Local.sSuffix,V.uGlobal.uJobO!Seq,V.uGlobal.uDelete(V.Local.iPosD)!Seq,V.Local.sDRet)
+			F.Intrinsic.Control.If(V.Local.sDRet,<>,"")
+				F.Intrinsic.String.Split(V.Local.sDRet,"*!*",V.Local.sTemp)
+				V.Local.sDRet.Set(V.Local.sTemp(0))
+				F.Intrinsic.Math.Add(V.Local.sDRet.Long,1,V.Local.iTemp)
+				F.Intrinsic.Control.For(V.Local.iJ,V.Local.iTemp,V.uGlobal.uJobO.UBound,1)
+					F.Intrinsic.Control.If(V.uGlobal.uJobO(v.Local.iJ)!Type.UCase,<>,"C")
+						F.Intrinsic.Control.ExitFor(V.Local.iJ)
+					F.Intrinsic.Control.Else
+						F.Intrinsic.String.Concat("DELETE FROM JOB_OPERATIONS WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='",V.Local.sSuffix,"' AND SEQ='",V.uGlobal.uJobO(v.Local.iJ)!Seq,"'",V.local.sQuery)
+						F.ODBC.Connection!conx.Execute(V.Local.sQuery)
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Next(V.Local.iJ)
+			F.Intrinsic.Control.EndIf
+			'Delete from JOB_OPERATIONS
+			F.Intrinsic.String.Concat("DELETE FROM JOB_OPERATIONS WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='",V.Local.sSuffix,"' AND SEQ='",V.uGlobal.uDelete(V.Local.iPosD)!Seq,"'",V.local.sQuery)
+			F.ODBC.Connection!conx.Execute(V.Local.sQuery)
+			'Delete from SCHED_WO_SUPP
+			F.Intrinsic.String.Concat("DELETE FROM SCHED_WO_SUPP  WHERE WO='",V.Screen.F_BOM_WO!txtWO.Text,"' AND WO_SUFFIX='",V.Local.sSuffix,"' AND WO_SEQ='",V.uGlobal.uDelete(V.Local.iPosD)!Seq,"'",V.local.sQuery)
+			F.ODBC.Connection!conx.Execute(V.Local.sQuery)
+		F.Intrinsic.Control.Next(V.Local.iC)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iX)
+
+'Get all sequences where bDirty=True and bDelete=False
+'F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!Suffix,V.Local.sSuffix,V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDirty,True,V.uGlobal.uGSFG!bDelete,False,V.Local.sCRet)
+F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGSFG!LineType,2,V.uGlobal.uGSFG!bDirty,True,V.uGlobal.uGSFG!bDelete,False,V.Local.sCRet)
+F.Intrinsic.Control.If(V.Local.sCRet,<>,"")
+	F.Intrinsic.String.Split(V.Local.sCRet,"*!*",V.Local.sCRet)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sCRet.UBound,1)
+		V.Local.iPosD.Set(V.Local.sCRet(v.Local.iC))
+		F.Intrinsic.Control.CallSub(Save_edit_record,"iPos",V.Local.iPosD)
+		'F.Intrinsic.Control.CallSub(Save_edit_router_rec,"iPos",V.Local.iPosD)
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Commit_Changes_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Save_Commit_Changes.End
+
+Program.Sub.Save_Edit_Record.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Edit_Record_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iPosD.Declare(Long)
+V.Local.sQuery.Declare(String)
+'V.Local.sParams.Declare(String)
+'V.Local.sDate1.Declare(String)
+'V.Local.sDate2.Declare(String)
+'V.Local.dDate1.Declare(Date)
+'V.Local.dDate2.Declare(Date)
+
+V.Local.iPosD.Set(V.Args.iPos)
+
+
+
+'
+'
+
+F.Intrinsic.String.Concat("SELECT * FROM JOB_OPERATIONS WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='",V.uGlobal.uGSFG(v.Local.iPosD)!Suffix,"' AND SEQ='",V.uGlobal.uGSFG(V.Local.iPosD)!Seq,"'",V.local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRW("rst",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,True)
+	F.ODBC.conx!rst.AddNew
+	F.ODBC.conx!rst.Set!JOB(V.Screen.F_BOM_WO!txtWO.Text)
+	F.ODBC.conx!rst.Set!SUFFIX(V.uGlobal.uGSFG(v.Local.iPosD)!Suffix)
+	F.ODBC.conx!rst.Set!SEQ(V.uGlobal.uGSFG(V.Local.iPosD)!Seq)
+	F.ODBC.conx!rst.Set!WO_INSERT("00")
+	F.ODBC.conx!rst.Set!LMO(V.uGlobal.uGSFG(v.Local.iPosD)!Type)
+	F.ODBC.conx!rst.Set!ROUTER("")
+	F.ODBC.conx!rst.Set!ROUTER_SEQ("000000")
+	F.ODBC.conx!rst.Set!PART(V.uGlobal.uGSFG(v.Local.iPosD)!Part)
+
+
+
+
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPosD)!Type.UCase,=,"L")
+		F.Intrinsic.String.Concat("SELECT STANDARD_COST FROM WORKCENTERS WHERE MACHINE='",V.uGlobal.uGSFG(v.Local.iPosD)!Part,"'",V.Local.sQuery)
+		F.ODBC.Connection!conx.OpenRecordsetRO("rstSeq",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conx!rstSeq.EOF,<>,True)
+			F.ODBC.conx!rst.Set!BURDEN(V.ODBC.conx!rstSeq.FieldVal!STANDARD_COST)
+		F.Intrinsic.Control.Else
+			F.ODBC.conx!rst.Set!BURDEN("0")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rstSeq.Close
+		F.ODBC.conx!rst.Set!FACTOR_WORKCENTER("1")
+		F.ODBC.conx!rst.Set!OVERLAP("0")
+		F.ODBC.conx!rst.Set!CREW_SIZE("0")
+		F.ODBC.conx!rst.Set!FREQUENCY("0")
+		F.ODBC.conx!rst.Set!DESCRIPTION(V.uGlobal.uGSFG(v.Local.iPosD)!Description)
+	F.Intrinsic.Control.ElseIf(V.uGlobal.uGSFG(v.Local.iPosD)!Type.UCase,=,"M")
+		F.Intrinsic.String.Concat("SELECT TIME_MATERIAL_LEAD,AMT_COST FROM INVENTORY_MSTR WHERE PART='",V.uGlobal.uGSFG(v.Local.iPosD)!Part,"'",V.Local.sQuery)
+		F.ODBC.Connection!conx.OpenRecordsetRO("rstSeq",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conx!rstSeq.EOF,<>,True)
+			F.ODBC.conx!rst.Set!BURDEN(V.ODBC.conx!rstSeq.FieldValLong!AMT_COST)
+			F.ODBC.conx!rst.Set!LEAD_TIME(V.ODBC.conx!rstSeq.FieldValLong!TIME_MATERIAL_LEAD)
+		F.Intrinsic.Control.Else
+			F.ODBC.conx!rst.Set!BURDEN("0")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rstSeq.Close
+		F.ODBC.conx!rst.Set!FACTOR_WORKCENTER("0")
+		F.ODBC.conx!rst.Set!OVERLAP("0")
+		F.ODBC.conx!rst.Set!CREW_SIZE("0")
+		F.ODBC.conx!rst.Set!FREQUENCY("0")
+		F.ODBC.conx!rst.Set!DESCRIPTION(V.uGlobal.uGSFG(v.Local.iPosD)!Description)
+		F.ODBC.conx!rst.Set!UNITS_COMPLETE("0")
+		F.ODBC.conx!rst.Set!PERCENT_COMPLETE("0")
+		F.ODBC.conx!rst.Set!UNITS_SCRAP("0")
+		F.ODBC.conx!rst.Set!UNITS_COMMITTED("0")
+		F.ODBC.conx!rst.Set!DOLLARS_COMMITTED("0")
+		F.ODBC.conx!rst.Set!RATE_BURDEN("0")
+		F.ODBC.conx!rst.Set!HOURS_ACTUAL("0")
+		F.ODBC.conx!rst.Set!DOLLARS_ACTUAL("0")
+		F.ODBC.conx!rst.Set!MIN_SCHED_BLOCK("0")
+		F.ODBC.conx!rst.Set!MACHINE_HRS("0")
+		F.ODBC.conx!rst.Set!TIME_ARRIVED("0")
+		F.ODBC.conx!rst.Set!TIME_ELAPSED("0")
+		F.ODBC.conx!rst.Set!FACTOR_FINITE("0")
+		F.ODBC.conx!rst.Set!YIELD("0")
+		F.ODBC.conx!rst.Set!RATE_PIECE("0")
+		F.ODBC.conx!rst.Set!PRICE_PERCENT("0")
+'		F.ODBC.conx!rst.Set!FILL3("000")
+		F.ODBC.conx!rst.Set!DATE_ARRIVED("000000")
+		F.ODBC.conx!rst.Set!DATE_MATERIAL_DUE("000000")
+		F.ODBC.conx!rst.Set!DATE_COMPLETED("000000")
+		F.ODBC.conx!rst.Set!DATE_PO_ORDER("000000")
+		F.ODBC.conx!rst.Set!SEQ_PO("000")
+		F.ODBC.conx!rst.Set!ORIG_RTR_SEQ("000000")
+	F.Intrinsic.Control.ElseIf(V.uGlobal.uGSFG(v.Local.iPosD)!Type.UCase,=,"O")
+		F.Intrinsic.String.Concat("SELECT * FROM OP_CODES WHERE LMO='O' AND MACHINE='",V.uGlobal.uGSFG(v.Local.iPosD)!Part,"' AND OPERATION='",V.uGlobal.uGSFG(v.Local.iPosD)!OpCode,"'",V.Local.sQuery)
+		F.ODBC.Connection!conx.OpenRecordsetRO("rstSeq",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conx!rstSeq.EOF,<>,True)
+			F.ODBC.conx!rst.Set!BURDEN(V.ODBC.conx!rstSeq.FieldVal!RATE)
+			F.ODBC.conx!rst.Set!OVERLAP(V.ODBC.conx!rstSeq.FieldValLong!OVERLAP)
+			F.ODBC.conx!rst.Set!FREQUENCY(V.ODBC.conx!rstSeq.FieldVal!FREQUENCY)
+			F.ODBC.conx!rst.Set!LEAD_TIME(V.ODBC.conx!rstSeq.FieldVal!STD_LEAD_TIME)
+		F.Intrinsic.Control.Else
+			F.ODBC.conx!rst.Set!BURDEN("0")
+			F.ODBC.conx!rst.Set!OVERLAP("0")
+			F.ODBC.conx!rst.Set!FREQUENCY("0")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rst.Set!FACTOR_WORKCENTER("0")
+		F.ODBC.conx!rst.Set!DESCRIPTION(V.uGlobal.uGSFG(v.Local.iPosD)!Description)
+		F.ODBC.conx!rst.Set!CREW_SIZE("0")
+		F.ODBC.conx!rstSeq.Close
+	F.Intrinsic.Control.EndIf
+
+	F.ODBC.conx!rst.Set!OPERATION(V.uGlobal.uGSFG(v.Local.iPosD)!OpCode)
+	F.ODBC.conx!rst.Set!UM(V.uGlobal.uGSFG(v.Local.iPosD)!UM)
+'Added if incase the setup value was Null this way the record will still be created and not error out
+'------------------------------------------------------------------------------------------------------------
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPosD)!Setup,!=,"")
+		F.ODBC.conx!rst.Set!SETUP(V.uGlobal.uGSFG(v.Local.iPosD)!Setup)
+	F.Intrinsic.Control.EndIf
+'-------------------------------------------------------------------------------------------------------------
+	F.ODBC.conx!rst.Set!UNITS(V.uGlobal.uGSFG(v.Local.iPosD)!Runtime)
+	F.ODBC.conx!rst.Set!DESCRIPTION(V.uGlobal.uGSFG(v.Local.iPosD)!Description)
+	F.ODBC.conx!rst.Update
+	F.ODBC.conx!rst.Close
+
+F.Intrinsic.Control.Else
+	F.ODBC.conx!rst.Set!ROUTER("")
+	F.ODBC.conx!rst.Set!ROUTER_SEQ("000000")
+	F.ODBC.conx!rst.Set!PART(V.uGlobal.uGSFG(v.Local.iPosD)!Part)
+	F.ODBC.conx!rst.Set!OPERATION(V.uGlobal.uGSFG(v.Local.iPosD)!OpCode)
+	F.ODBC.conx!rst.Set!DESCRIPTION(V.uGlobal.uGSFG(v.Local.iPosD)!Description)
+	F.ODBC.conx!rst.Set!UM(V.uGlobal.uGSFG(v.Local.iPosD)!UM)
+'Added if incase the setup value was Null this way the record will still be created and not error out
+'------------------------------------------------------------------------------------------------------------
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPosD)!Setup,!=,"")
+		F.ODBC.conx!rst.Set!SETUP(V.uGlobal.uGSFG(v.Local.iPosD)!Setup)
+	F.Intrinsic.Control.EndIf
+'-------------------------------------------------------------------------------------------------------------
+	F.ODBC.conx!rst.Set!UNITS(V.uGlobal.uGSFG(v.Local.iPosD)!Runtime)
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPosD)!Closed,=,"True")
+		F.ODBC.conx!rst.Set!FLAG_CLOSED("Y")
+		F.ODBC.conx!rst.Set!DATE_COMPLETED(V.uGlobal.uGSFG(v.local.iPosD)!Date_Completed)
+	F.Intrinsic.Control.Else
+		F.ODBC.conx!rst.Set!DATE_COMPLETED("000000")
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conx!rst.Update
+	F.ODBC.conx!rst.Close
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Edit_Record_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Save_Edit_Record.End
+
+program.sub.gsfgwo_commandclick_new.start
+F.Intrinsic.Control.SetErrorHandler("gsfgwo_mousedown_Err")
+F.Intrinsic.Control.ClearErrors
+Gui.F_BOM_WO..Enabled(False)
+
+V.Local.sError.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.iPos.Declare(Long)
+V.Local.sRet.Declare(String)
+V.Global.bCmdClick.Set(True)
+V.Local.iRow.Declare(Long)
+
+
+
+
+'F.Intrinsic.String.Concat("COMMAND CLICK",V.Ambient.NewLine,"Column: ",V.Args.Column,V.Local.sText)
+'F.Intrinsic.UI.Msgbox(V.Local.sText)
+
+
+F.Intrinsic.Control.If(V.Args.Key,<,1)
+	V.Global.iLastCol.Set(0)
+	Gui.F_BOM_WO..Enabled(True)
+	Gui.F_BOM_WO.txtDescription.SetFocus
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.If(V.Args.Column,=,13)
+	F.Intrinsic.Control.If(V.Global.iLastCol,<>,13)
+		V.Global.iLastCol.Set(V.Args.Column)
+		Gui.F_BOM_WO..Enabled(True)
+		Gui.F_BOM_WO.txtDescription.SetFocus
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Clear_seq_fields)
+
+F.Intrinsic.Control.If(V.Args.Column,=,1)
+	F.Intrinsic.Control.CallSub(Gsfgshow-hidewo,"iR",V.Args.Key)
+	V.Global.iLastCol.Set(V.Args.Column)
+	Gui.F_BOM_WO..Enabled(True)
+	Gui.F_BOM_WO.txtDescription.SetFocus
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+
+'	
+	
+
+	Gui.F_BOM_WO.gsfgWO.GetTextMatrix(12,V.Args.Key,V.Local.sText)
+	F.Intrinsic.Control.If(V.Local.sText,<>,"")
+		F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!Position,V.Local.sText.Long,4,V.Local.sRet)
+		F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+			F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+			V.Local.iPos.Set(V.Local.sRet(0))
+		F.Intrinsic.Control.Else
+			V.Global.iLastCol.Set(V.Args.Column)
+			Gui.F_BOM_WO..Enabled(True)
+			Gui.F_BOM_WO.txtDescription.SetFocus
+			F.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		V.Global.iLastCol.Set(V.Args.Column)
+		Gui.F_BOM_WO..Enabled(True)
+		Gui.F_BOM_WO.txtDescription.SetFocus
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	'Line type 2 - Sequence rows, includes delete button in column 12
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!LineType,=,2)
+		V.Global.bCmdClick.Set(False)
+		'delete button
+		F.Intrinsic.Control.If(V.Args.Column,=,13)
+			F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,4)
+				F.Intrinsic.String.Concat("Are you sure you want to delete Sequence ",V.uGlobal.uGSFG(v.Local.iPos)!Seq,"?",V.Ambient.NewLine,V.Ambient.NewLine,"Note:  You may not delete lines that have had work done.  Another check will be performed when this job is rescheduled to verify no work has been done.",V.Local.sText)
+				F.Intrinsic.UI.Msgbox(V.Local.sText,V.Screen.F_BOM_WO.Caption,4,V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet,=,"6")
+					V.uGlobal.uGSFG(v.Local.iPos)!bDelete.Set(True)
+					V.uGlobal.uGSFG(v.Local.iPos)!Visible.Set(False)
+					Gui.F_BOM_WO.gsfgWO.RowHeight(V.Args.Key,0)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.Else
+				F.Intrinsic.Control.CallSub(Pop_seq_fields,"iR",V.Args.Key,"iPos",V.Local.iPos)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Else
+			F.Intrinsic.Control.CallSub(Pop_seq_fields,"iR",V.Args.Key,"iPos",V.Local.iPos)
+		F.Intrinsic.Control.EndIf
+	'Line type 1 - Parent row for each suffix
+	F.Intrinsic.Control.ElseIf(V.uGlobal.uGSFG(v.Local.iPos)!LineType,=,1)
+		'Refresh Job
+		F.Intrinsic.Control.If(V.Args.Column,=,9)
+			F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,2)
+				F.Intrinsic.UI.InvokeWaitDialog("Processing",V.Screen.F_BOM_WO.Caption)
+				F.Intrinsic.Control.CallSub(Pop_ugsfg,"iLoad",3,"iPos",V.Local.iPos)
+				F.Intrinsic.UI.CloseWaitDialog
+			F.Intrinsic.Control.ElseIf(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,3)
+				F.Intrinsic.UI.InvokeWaitDialog("Processing",V.Screen.F_BOM_WO.Caption)
+				F.Intrinsic.Control.CallSub(Pop_ugsfg,"iLoad",3,"iPos",V.Local.iPos)
+				F.Intrinsic.UI.CloseWaitDialog
+			F.Intrinsic.Control.EndIf
+		'Add Seq
+		F.Intrinsic.Control.ElseIf(V.Args.Column,=,10)
+			F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,2)
+				F.Intrinsic.Control.CallSub(Pop_seq_fields,"iR",-1,"iPos",V.Local.iPos)
+			F.Intrinsic.Control.ElseIf(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,3)
+				F.Intrinsic.Control.CallSub(Pop_seq_fields,"iR",-1,"iPos",V.Local.iPos)
+			F.Intrinsic.Control.EndIf
+		'Reschedule
+		F.Intrinsic.Control.ElseIf(V.Args.Column,=,13)
+			F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,2)
+				F.Intrinsic.UI.Msgbox("Are you sure you want to commit changes and reschedule this job?",V.Screen.F_BOM_WO.Caption,4,V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet,=,"6")
+					F.Intrinsic.Control.CallSub(Save,"bAll",False,"iPos",V.Local.iPos)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.ElseIf(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,3)
+				F.Intrinsic.UI.Msgbox("Are you sure you want to commit changes and reschedule this job?",V.Screen.F_BOM_WO.Caption,4,V.Local.sRet)
+				F.Intrinsic.Control.If(V.Local.sRet,=,"6")
+					F.Intrinsic.Control.CallSub(Save,"bAll",False,"iPos",V.Local.iPos)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+V.Global.iLastCol.Set(V.Args.Column)
+Gui.F_BOM_WO..Enabled(True)
+Gui.F_BOM_WO.txtDescription.SetFocus
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("gsfgwo_mousedown_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.gsfgwo_commandclick_new.end
+
+program.sub.gsfgwo_mousedown.start
+F.Intrinsic.Control.SetErrorHandler("gsfgwo_mousedown_Err")
+F.Intrinsic.Control.ClearErrors
+Gui.F_BOM_WO..Enabled(False)
+
+V.Local.sError.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.iPos.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.sRet.Declare(String)
+
+
+
+
+v.Local.iRow.Set(v.Screen.F_BOM_WO!gsfgWO.RowSel)
+'F.Intrinsic.String.Concat("MOUSE DOWN",V.Ambient.NewLine,"Column: ",V.Args.mousecol,V.Local.sText)
+'F.Intrinsic.UI.Msgbox(V.Local.sText)
+
+F.Intrinsic.Control.If(V.Global.bCmdClick,=,True)
+	V.Global.bCmdClick.Set(False)
+	Gui.F_BOM_WO..Enabled(True)
+	Gui.F_BOM_WO.txtDescription.SetFocus
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Args.mouserow,<,1)
+	Gui.F_BOM_WO..Enabled(True)
+	Gui.F_BOM_WO.txtDescription.SetFocus
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Clear_seq_fields)
+
+F.Intrinsic.Control.If(V.Args.mousecol,<>,1)
+
+	Gui.F_BOM_WO.gsfgWO.GetTextMatrix(12,V.Local.iRow,V.Local.sText)
+	F.Intrinsic.Control.If(V.Local.sText,<>,"")
+		F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGSFG!Position,V.Local.sText.Long,4,V.Local.sRet)
+		F.Intrinsic.Control.If(V.Local.sRet,<>,"")
+			F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+			V.Local.iPos.Set(V.Local.sRet(0))
+		F.Intrinsic.Control.Else
+			Gui.F_BOM_WO..Enabled(True)
+			Gui.F_BOM_WO.txtDescription.SetFocus
+			F.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		Gui.F_BOM_WO..Enabled(True)
+		Gui.F_BOM_WO.txtDescription.SetFocus
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!LineType,=,2)
+		F.Intrinsic.Control.If(V.Args.mousecol,=,12)
+			F.Intrinsic.Control.If(V.uGlobal.uGSFG(v.Local.iPos)!FGStyle,=,4)
+			F.Intrinsic.Control.Else
+				F.Intrinsic.Control.CallSub(Pop_seq_fields,"iR",V.Local.iRow,"iPos",V.Local.iPos)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Else
+			F.Intrinsic.Control.CallSub(Pop_seq_fields,"iR",V.Local.iRow,"iPos",V.Local.iPos)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+Gui.F_BOM_WO..Enabled(True)
+Gui.F_BOM_WO.txtDescription.SetFocus
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("gsfgwo_mousedown_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+
+program.sub.gsfgwo_mousedown.end
+
+Program.Sub.Save_Seq_Dates.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Seq_Dates_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sJob.Declare(String)
+V.Local.sSuffix.Declare(String)
+V.Local.sDateStart.Declare(String)
+V.Local.sDateDue.Declare(String)
+V.Local.dDate1.Declare(Date)
+V.Local.dDate2.Declare(Date)
+
+V.Local.sJob.Set(V.Args.sJob)
+F.Intrinsic.String.Concat("select job, suffix, seq, LMO, description, date_start, date_due from JOB_OPERATIONS where job = '",V.Local.sJob,"' and (Date_Start = '' or DATE_Due = '') order by job, suffix, seq",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRW("rstSeq",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conx!rstSeq.EOF,<>,True)
+	F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstSeq.EOF,=,True)
+		V.Local.sSuffix.Set(V.ODBC.conx!rstSeq.FieldValTrim!Suffix)
+		F.Intrinsic.String.Concat("SELECT DATE_START,DATE_DUE FROM JOB_HEADER WHERE JOB = '",V.Local.sJob,"' AND SUFFIX = '",V.Local.sSuffix,"'",V.Local.sQuery)
+		F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstHead",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conx!rstHead.EOF,<>,True)
+			V.Local.sDateStart.Set(V.ODBC.conx!rstHead.FieldValTrim!DATE_START)
+			V.Local.sDateDue.Set(V.ODBC.conx!rstHead.FieldValTrim!DATE_DUE)
+		F.Intrinsic.Control.Else
+			V.Local.sDateDue.Set("000000")
+			V.Local.sDateStart.Set("000000")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rstHead.Close
+		F.ODBC.conx!rstSeq.Set!DATE_START(V.Local.sDateStart)
+		F.ODBC.conx!rstSeq.Set!DATE_DUE(V.Local.sDateDue)
+		F.ODBC.conx!rstSeq.Update
+		F.ODBC.conx!rstSeq.MoveNext
+	F.Intrinsic.Control.Loop
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rstSeq.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Seq_Dates_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Save_Seq_Dates.End
+
+Program.Sub.Save_Edit_Router_Rec.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Edit_Router_Rec_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iPosD.Declare(Long)
+V.Local.sQuery.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sTemp2.Declare(String)
+V.Local.sSeq.Declare(String)
+V.Local.sSuffix.Declare(String)
+V.Local.sRouter.Declare(String)
+V.Local.sLeadTime.Declare(String)
+V.Local.iPosD.Set(V.Args.iPos)
+
+F.Intrinsic.String.LPad(V.uGlobal.uGSFG(V.Local.iPosD)!Seq,"0",6,V.Local.sSeq)
+'F.Intrinsic.String.Replace(V.uGlobal.uGSFG(V.Local.iPosD)!Suffix,"0"," ",V.Local.sSuffix)
+'F.Intrinsic.String.LTrim(V.Local.sSuffix,V.Local.sSuffix)
+'F.Intrinsic.String.Replace(V.Local.sSuffix," ","0",V.Local.sSuffix)
+
+F.Intrinsic.String.Concat("SELECT * FROM JOB_HEADER WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='",V.uGlobal.uGSFG(v.Local.iPosD)!Suffix,"'",V.local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstJob",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstJob.FieldValTrim!ROUTER,=,"")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.Else
+		V.Local.sRouter.Set(V.ODBC.conx!rstJob.FieldValTrim!ROUTER)
+	F.Intrinsic.Control.EndIf
+F.ODBC.conX!rstJob.Close
+
+F.Intrinsic.String.Concat("SELECT * FROM JOB_OPERATIONS WHERE JOB='",V.Screen.F_BOM_WO!txtWO.Text,"' AND SUFFIX='",V.uGlobal.uGSFG(v.Local.iPosD)!Suffix,"' AND SEQ = '",V.Local.sSeq,"'",V.local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstJob",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstJob.EOF,=,False)
+		V.Local.sLeadTime.Set(V.ODBC.conx!rstJob.FieldVal!LEAD_TIME)
+	F.Intrinsic.Control.Else
+		V.Local.sLeadTime.Set("0")
+	F.Intrinsic.Control.EndIf
+F.ODBC.conX!rstJob.Close
+
+'update the router header record
+F.Intrinsic.String.Concat("SELECT * FROM ROUTER_HEADER WHERE ROUTER = '",V.Local.sRouter,"' AND LINE_ROUTER = '",V.Local.sSeq,"' AND ROUTER_TYPE = 'L' ORDER BY LINE_ROUTER",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRW("rstRouter",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conx!rstRouter.EOF,=,True)
+	F.Intrinsic.String.Concat("INSERT INTO ROUTER_HEADER (Router, Router_Type, Line_Router, Router_Insert, Description_Router, Similar, Prod_line, No_Reprice,Scrap,Customer,Part_Customer, Drawing_Customer, Date_Current, Price_Current, Qty_Prior, Price_Prior, Date_Original, Commission) VALUES ('",V.Local.sRouter,"','L','",V.Local.sSeq,"','00'",V.Local.sQuery)
+	F.Intrinsic.Control.SelectCase(V.uGlobal.uGSFG(V.Local.iPosD)!Type.UCase)
+	F.Intrinsic.Control.Case("L")
+		F.Intrinsic.String.Concat("L",V.uGlobal.uGSFG(v.Local.iPosD)!Part,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",27,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",30,V.Local.sTemp)
+	F.Intrinsic.Control.Case("M")
+		F.Intrinsic.String.Concat("M",V.uGlobal.uGSFG(v.Local.iPosD)!Part,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",27,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",30,V.Local.sTemp)
+	F.Intrinsic.Control.Case("O")
+		F.Intrinsic.String.Concat("O",V.uGlobal.uGSFG(v.Local.iPosD)!Part,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",27,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",30,V.Local.sTemp)
+	F.Intrinsic.Control.Case("C")
+		V.Local.sTemp.set("C                          000")
+	F.Intrinsic.Control.EndSelect
+	F.Intrinsic.String.Concat(V.Local.sQuery,",'",V.Local.sTemp,"','00000000000000000000','00','0',0,'000000',",V.Local.sQuery)
+	F.Intrinsic.String.LimitSplit(V.uGlobal.uGSFG(v.Local.iPosD)!Description,8,V.Local.sTemp)
+	F.Intrinsic.String.LPad(V.Local.sTemp(0),"0",20,V.Local.sTemp2)
+	F.Intrinsic.Control.If(V.Local.sTemp.UBound,>,1)
+		F.Intrinsic.String.Concat(V.Local.sQuery,"'",V.Local.sTemp2,"','",V.Local.sTemp(1),"','00',0,0,0,0,'000000',0)",V.Local.sQuery)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(V.Local.sQuery,"'",V.Local.sTemp2,"','','00',0,'0',0,'000000',0)",V.Local.sQuery)
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.SelectCase(V.uGlobal.uGSFG(V.Local.iPosD)!Type.UCase)
+	F.Intrinsic.Control.Case("L")
+		F.Intrinsic.String.Concat("L",V.uGlobal.uGSFG(v.Local.iPosD)!Part,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",27,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",30,V.Local.sTemp)
+	F.Intrinsic.Control.Case("M")
+		F.Intrinsic.String.Concat("M",V.uGlobal.uGSFG(v.Local.iPosD)!Part,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",27,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",30,V.Local.sTemp)
+	F.Intrinsic.Control.Case("O")
+		F.Intrinsic.String.Concat("O",V.uGlobal.uGSFG(v.Local.iPosD)!Part,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp," ",27,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",30,V.Local.sTemp)
+	F.Intrinsic.Control.Case("C")
+		V.Local.sTemp.set("C                          000")
+	F.Intrinsic.Control.EndSelect
+	F.Intrinsic.String.Concat("UPDATE ROUTER_HEADER SET Description_Router = '",V.Local.sTemp,"', PART_CUSTOMER = ",V.Local.sQuery)
+	F.Intrinsic.String.LimitSplit(V.uGlobal.uGSFG(v.Local.iPosD)!Description,8,V.Local.sTemp)
+	F.Intrinsic.String.LPad(V.Local.sTemp(0),"0",20,V.Local.sTemp2)
+	F.Intrinsic.Control.If(V.Local.sTemp.UBound,>,1)
+		F.Intrinsic.String.Concat(V.Local.sQuery,"'",V.Local.sTemp2,"', DRAWING_CUSTOMER = '",V.Local.sTemp(1),"' WHERE ROUTER = '",V.Local.sROUTER,"' AND LINE_ROUTER = '",V.Local.sSeq,"' AND ROUTER_TYPE = 'L'",V.Local.sQuery)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(V.Local.sQuery,"'",V.Local.sTemp2,"' WHERE ROUTER = '",V.Local.sROUTER,"' AND LINE_ROUTER = '",V.Local.sSeq,"' AND ROUTER_TYPE = 'L'",V.Local.sQuery)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.ODBC.conx!rstRouter.Close
+F.ODBC.Connection!conx.Execute(V.Local.sQuery)
+
+'F.Intrinsic.UI.Msgbox(V.Local.sQuery)
+
+'update the router line record
+F.Intrinsic.String.Concat("SELECT * FROM ROUTER_LINE WHERE ROUTER = '",V.Local.sROUTER,"' AND LINE_ROUTER = '",V.Local.sSeq,"' AND ROUTER_TYPE LIKE 'L' ORDER BY LINE_ROUTER",V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRW("rstRouter",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conx!rstRouter.EOF,=,True)
+	V.Local.sQuery.Set("INSERT INTO ROUTER_LINE (Router, Router_Type, Line_Router, Router_Insert, LMO, Part_WC_Outside, Operation, Set_up, Run_time, Rate, Frequency, Multiple, Desc_Rt_Line,UM_Inventory, Overlap, WC_Factor, Actual_Wt, Amt_Minimum, Group_Sequence, Crew_Size, Run_Time_D6, Mes_Process_ID, Price_Percent, Lead_Time) VALUES (")
+	F.Intrinsic.String.Concat(V.Local.sQuery,"'",V.Local.sROUTER,"','L','",V.Local.sSeq,"','00','",V.uGlobal.uGSFG(V.Local.iPosD)!Type.UCase,"','",V.uGlobal.uGSFG(V.Local.iPosD)!Part,"','",V.uGlobal.uGSFG(V.Local.iPosD)!OpCode,"','",V.uGlobal.uGSFG(v.Local.iPosD)!Setup,"',0,0,0,0,'",V.uGlobal.uGSFG(v.Local.iPosD)!Description,"','",V.uGlobal.uGSFG(v.Local.iPosD)!UM,"','0','0',0,0,'000','0',0,'0','0','",V.Local.sLeadTime,"')",V.Local.sQuery)
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Concat("UPDATE ROUTER_LINE SET LMO = '",V.uGlobal.uGSFG(V.Local.iPosD)!Type.UCase,"', PART_WC_OUTSIDE = '",V.uGlobal.uGSFG(V.Local.iPosD)!Part,"', OPERATION =  '",V.uGlobal.uGSFG(V.Local.iPosD)!OpCode,"', SET_UP =  '",V.uGlobal.uGSFG(v.Local.iPosD)!Setup,"',  LEAD_TIME =  '",V.Local.sLeadTime,"',  Desc_Rt_Line =  '",V.uGlobal.uGSFG(v.Local.iPosD)!Description,"'  WHERE ROUTER = '",V.Local.sRouter,"' AND LINE_ROUTER = '",V.Local.sSeq,"' AND ROUTER_TYPE LIKE 'L'",V.Local.sQuery)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.conx!rstRouter.Close
+F.ODBC.Connection!conx.Execute(V.Local.sQuery)
+
+'F.Intrinsic.UI.Msgbox(V.Local.sQuery)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Edit_Router_Rec_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Save_Edit_Router_Rec.End
+
+Program.Sub.Re-save_Part_WG_WC.Start
+F.Intrinsic.Control.SetErrorHandler("Re-save_Part_WG_WC_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sUpdate.Declare(String)
+V.Local.iC.Declare(Long)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uGSFG.UBound,1)
+	F.Intrinsic.String.Concat("SELECT Part FROM JOB_OPERATIONS WHERE JOB = '",V.Global.sLastJob,"' and SUFFIX = '",V.uGlobal.uGSFG(V.Local.iC)!Suffix,"' AND  SEQ = '",V.uGlobal.uGSFG(V.Local.iC)!Seq,"'",V.Local.sQuery)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstOps",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstOps.EOF,<>,True)
+		F.Intrinsic.Control.If(V.uGlobal.uGSFG(V.Local.iC)!Part,<>,"")
+			F.Intrinsic.String.Concat("Update Job_Operations set part = '",V.uGlobal.uGSFG(V.Local.iC)!Part,"' where JOB = '",V.Global.sLastJob,"' and SUFFIX = '",V.uGlobal.uGSFG(V.Local.iC)!Suffix,"' AND  SEQ = '",V.uGlobal.uGSFG(V.Local.iC)!Seq,"'",V.Local.sUpdate)
+			F.ODBC.Connection!conx.Execute(V.Local.sUpdate)
+			'F.ODBC.conx!rstOps.Set!PART(V.uGlobal.uGSFG(V.Local.iC)!Part)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conx!rstOps.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Re-save_Part_WG_WC_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_Exploded_BOM_WO.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Re-save_Part_WG_WC.End
+
+Program.Sub.ColWidths.Start
+'Gui.F_BOM_WO.gsfgWO.SetColumnPercentages("0:.03:.06:.09:.162:.213:.05:.075:.05:.09:.09:0:0:.09")
+
+V.Local.fWidth.Declare(Float)
+
+'F.Intrinsic.Math.Add(0,.03,.06,.09,.162,.213,.05,.075,.05,.09,.09,0,0,.09,V.Local.fWidth)
+'F.Intrinsic.UI.Msgbox(V.Local.fWidth)
+
+Gui.F_BOM_WO.gsfgWO.ColWidth(0,0)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.03,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(1,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.06,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(2,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.09,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(3,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.15,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(4,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.2,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(5,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.05,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(6,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.075,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(7,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.05,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(8,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.09,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(9,V.Local.fWidth)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.09,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(10,V.Local.fWidth)
+
+Gui.F_BOM_WO.gsfgWO.ColWidth(11,0)
+
+Gui.F_BOM_WO.gsfgWO.ColWidth(12,0)
+
+F.Intrinsic.Math.Mult(V.Screen.F_BOM_WO!gsfgWO.Width,.09,V.Local.fWidth)
+Gui.F_BOM_WO.gsfgWO.ColWidth(13,V.Local.fWidth)
+
+
+
+
+Program.Sub.ColWidths.End
+
+Program.Sub.Comments.Start
+${$0$}$ATG_Exploded_BOM_WO$}$Strider$}$10/5/2015
+${$4$}$1$}$Save_Check_Deleted_Seqs$}$0$}$-1$}$Strider$}$10/5/2015 1:19:10 PM$}$iPos was being set to iX location in sDirtyJobs instead of being set at the newly redimmed position of iUB.
+Program.Sub.Comments.End
+
